@@ -1,0 +1,12 @@
+/*Ce fichier contiendra le style des deux affichage. Batiment et taille*/
+
+.display-salle{
+    display: flex;
+    margin : 10px;
+    flex-wrap: wrap;
+
+}
+
+.btp-title{
+    font-weight: 600;
+}

@@ -1,0 +1,64 @@
+/*Style du composant principal de Header dans toutes les pages du dashboard*/
+
+.dashboard-header-container{
+    position: fixed;
+    height: 50px;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: #17bcc1;
+    padding: 0 20px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.links-and-picture{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.link{
+    margin-right: 10px;
+    color: white;
+    padding: 5px;
+    font-size: 1em;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.link:hover{
+    background-color: rgba(255, 255, 255, 0.336);
+}
+
+.active-sign{
+    background-color: #0F42C7;
+}
+
+.active-sign:hover{
+    background-color: #0F42C7;
+}
+
+
+/*Style du composant Logo*/
+
+.header-dashboard-logo{
+    width: 150px;
+    height: 35px;
+}
+
+
+/*Style du composant picture*/
+
+.header-avatar{
+    width: 35px;
+    height: 27px;
+    background-color: green;
+    color: white;
+    font-weight: 600;
+    border-radius: 50%;
+    padding-top: 8px;
+    text-align: center;
+}

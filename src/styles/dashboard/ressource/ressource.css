@@ -1,0 +1,82 @@
+/*Style du composant Ressource*/
+
+.ressource-container{
+    width: 95%;
+    display: flex;
+    margin: auto;
+    margin-top: 70px;
+    justify-content: space-between;
+}
+
+.right-side{
+    width: 70%;
+    
+}
+
+.right-side-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.new-salle{
+    width: 120px;
+    background-color: #c4c4c4;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    cursor: pointer;
+    margin-right: 7px;
+}
+
+.search-field{
+    width: 200px;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    cursor: auto;
+}
+
+.search-field:focus{
+    border: none;
+}
+
+.new-salle-and-search{
+    display: flex;
+}
+
+.display-type{
+    display: flex;
+}
+
+.display-type-select{
+    width: 50%;
+    background-color: #c4c4c4d8;
+    border: none;
+    margin-left: 10px;
+    height: 35px;
+    padding: 8px;
+    font-family: inherit;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+/*Style du composant Unit salle*/
+
+.unit-salle{
+    width: 7%;
+    height: 20px;
+    padding: 10px;
+    background-color: #0043A7;
+    color: white;
+    border-radius: 3px;
+    font-size: 0.8em;
+    text-align: center;
+    margin : 0 5px 5px 0;
+    cursor: pointer;
+}
