@@ -10,6 +10,8 @@
 
 .right-side{
     width: 70%;
+    animation-name: change-ressource;
+    animation-duration: 0.15s;
     
 }
 
@@ -24,7 +26,7 @@
 }
 
 .new-salle{
-    width: 120px;
+    width: 150px;
     background-color: #c4c4c4;
     text-align: center;
     padding: 5px;
@@ -79,4 +81,37 @@
     text-align: center;
     margin : 0 5px 5px 0;
     cursor: pointer;
+}
+
+.ressource-active-sign{
+    position: absolute;
+    background-color: #0043A7;
+    height: 45px;
+    width: 10px;
+}
+
+.salle{
+    left: 4%;
+    top: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+/*Animation de quelques section des ressources*/
+
+@keyframes change-ressource {
+     from{
+        margin-left: 10%;
+    }
+
+    to{
+        margin-left: 0%;
+    }
 }

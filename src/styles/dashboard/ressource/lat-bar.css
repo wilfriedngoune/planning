@@ -14,6 +14,11 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.lat-bar-item:hover{
+    border-left: 15px solid #0043A7;
 }
 
 .add-new-ressource{
@@ -27,3 +32,9 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.lat-bar-router-link{
+    text-decoration: none;
+    color: black;
+}
+

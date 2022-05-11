@@ -1,0 +1,10 @@
+Dans ce dossier, tous les composant qui sont a la racine concerne la partie salle de l'affichage.
+
+InfoSalle : Composant qui contient les informations relative a une salle.
+LatBar : Composant qui produit la barre laterale qui est dans la page des ressources
+Ressource : C'est le composant principale de ce ce dossier. La page Ressource.
+RessourceLinks : C'est le composant qui genere les menu du header. >> ressource.css
+SalleBatiment : C'est le composant qui affiche les salles enfonction du batiment.
+UnitSalle : C'est le composant qui ressort uniquement le petit carre salle.
+SalleTaille : Ce composant affiche les salles en fonction de la taille. Meme style que salle-batiment
+SalleLoading : Ce composant c'est le loader des affichage des salles.

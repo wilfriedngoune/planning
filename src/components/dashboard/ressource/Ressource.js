@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+
+
 import '../../../styles/dashboard/dashboardHeader.css'
+import '../../../styles/dashboard/ressource/ressource.css'
+
+
 import Logo from "../dashboardHeader/Logo";
 import ProfilPicture from "../dashboardHeader/ProfilPicture";
 import LatBar from "./LatBar";
 import RessourceLinks from "./RessourceLinks";
-import '../../../styles/dashboard/ressource/ressource.css'
 import SalleBatiment from "./SalleBatiment";
+import SalleLoading from "./SalleLoading";
+import SalleTaille from "./SalleTaille";
+
 
 function Ressource(){
+
+    //Etat qui controle le type d'affichage des salles
+    const [displayType, setDisplayType] = useState('Taille')
+
+    //Fonction qui permet de changer le type d'affichage
+
     return(
         <section>
             {/*Le Header */}
@@ -21,7 +34,10 @@ function Ressource(){
 
             {/*La partie gauche et droite de la page */}
             <section className = 'ressource-container'>
-                <LatBar />
+                {/*Le nom c'est pour ajouter le signe de la page active */}
+                <LatBar nom = 'salle' />
+
+
                 <section className = 'right-side'>
 
                     <section className = 'right-side-header'>
@@ -36,15 +52,18 @@ function Ressource(){
                     <br />
                     <section className = 'display-type'>
                         <h4>Afficher par</h4> 
-                        <select className = 'display-type-select'>
+                        <select id = 'display-type' onChange = {() => setDisplayType(document.getElementById('display-type').value)} className = 'display-type-select'>
                             <option>Taille</option>
                             <option>Batiment</option>
                         </select>
                     </section>
 
+                    {/*Affichage du loader */}
+                    {/* <SalleLoading /> */}
                     {/*Affichage des salle en fonction de la selection */}
                     <br />
-                    <SalleBatiment />
+                    {displayType === "Batiment" ? <SalleBatiment /> : <SalleTaille />}
+                    
 
                 </section>
             </section>

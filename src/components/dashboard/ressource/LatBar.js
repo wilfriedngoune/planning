@@ -1,45 +1,56 @@
 import React from "react";
 import '../../../styles/dashboard/ressource/lat-bar.css'
 
-function LatBar(){
+import {Link} from 'react-router-dom';
+
+function LatBar({nom}){
+
+
     return(
         <section className = 'lat-bar-container'>
             {/*Listing des element de la latbar */}
 
             {/*Les salles*/}
-            <section className = 'lat-bar-item'>
-                <section>
-                    <i></i>
-                    <span>Salle</span>
+            <Link to = '/dashboard/ressource/salle' className = 'lat-bar-router-link'>
+                <section className = 'lat-bar-item'>
+                    <section>
+                        <i></i>
+                        <span className = 'lat-bar-name'>Salle</span>
+                    </section>
+                    <span class="material-symbols-outlined">chevron_right</span>
                 </section>
-                <span class="material-symbols-outlined">chevron_right</span>
-            </section>
+            </Link>
 
-            
-            <section className = 'lat-bar-item'>
-                <section>
-                    <i></i>
-                    <span>Video projecteur</span>
+
+            <Link to = '/dashboard/ressource/video-projecteur' className = 'lat-bar-router-link'>
+                <section className = 'lat-bar-item'>
+                    <section>
+                        <i></i>
+                        <span className = 'lat-bar-name'>Video projecteur</span>
+                    </section>
+                    <span class="material-symbols-outlined">chevron_right</span>
                 </section>
-                <span class="material-symbols-outlined">chevron_right</span>
-            </section>
+            </Link>
 
-            <section className = 'lat-bar-item'>
-                <section>
-                    <i></i>
-                    <span>Espace vert</span>
+            <Link to = '/dashboard/ressource/espace-vert' className = 'lat-bar-router-link'>
+                <section className = 'lat-bar-item'>
+                    <section>
+                        <i></i>
+                        <span>Espace vert</span>
+                    </section>
+                    <span class="material-symbols-outlined">chevron_right</span>
                 </section>
-                <span class="material-symbols-outlined">chevron_right</span>
-            </section>
+            </Link>
 
-            <section className = 'lat-bar-item'>
-                <section>
-                    <i></i>
-                    <span>Video projecteur</span>
+            <Link to = '/dashboard/ressource/vehicule' className = 'lat-bar-router-link'>
+                <section className = 'lat-bar-item'>
+                    <section>
+                        <i></i>
+                        <span>Vehicule</span>
+                    </section>
+                    <span class="material-symbols-outlined">chevron_right</span>
                 </section>
-                <span class="material-symbols-outlined">chevron_right</span>
-            </section>
-
+            </Link>
             {/*Bouton pour ajouter une nouvelle ressource. */}
             <br /><br />
             <div className = 'add-new-ressource'>Ajouter une nouvelle ressource</div>

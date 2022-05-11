@@ -121,6 +121,8 @@ function SalleBatiment(){
         }
     ]
 
+
+   
     return(
         <section>
             {
@@ -133,7 +135,7 @@ function SalleBatiment(){
                             {
                                 batiment.salles.map(
                                     (salle) =>
-                                    <Fragment><UnitSalle nom = {salle.nom}/></Fragment>
+                                    <Fragment><UnitSalle nom = {salle.nom} batiment = {batiment.nom} capCours  = {salle.capacite_cours} capExam = {salle.capacite_exam} electricite = {salle.etat_electricite} /></Fragment>
                                 )
                             }
                         </section>
