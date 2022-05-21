@@ -3,6 +3,7 @@
     align-items: center;
     display:  flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .new-program-button{
@@ -21,9 +22,16 @@
 
 .select-program-container{
     display: flex;
-    width: 65%;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.select-program-title{
+    margin-top: 10px;
+    margin-right: 10px;
+    font-weight: 600;
+    
 }
 
 .program-header-select{
@@ -34,6 +42,7 @@
     border-radius: 5px;
     font-family: inherit;
     margin-top: 12px;
+    margin-right: 5px;
 
 }
 
