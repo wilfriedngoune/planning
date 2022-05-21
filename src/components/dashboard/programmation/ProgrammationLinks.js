@@ -3,12 +3,12 @@ import '../../../styles/dashboard/dashboardHeader.css'
 
 
 
-function AccueilLinks(){
+function ProgrammationLinks(){
     return(
         <section className = 'links-container'>
-            <span className = 'link active-sign'>Accueil</span>
+            <span className = 'link'>Accueil</span>
             <span className = 'link' onClick = {() => window.location.href = '/dashboard/ressource/salle'}>Ressource</span>
-            <span className = 'link' onClick = {() => window.location.href = '/dashboard/programmation'}>Programmation</span>
+            <span className = 'link active-sign'>Programmation</span>
             <span className = 'link'>Réservation</span>
             <span className = 'link'>Messages</span>
         </section>
@@ -16,4 +16,4 @@ function AccueilLinks(){
 }
 
 
-export default AccueilLinks
+export default ProgrammationLinks

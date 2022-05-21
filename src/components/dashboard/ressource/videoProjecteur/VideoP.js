@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../../../styles/dashboard/dashboardHeader.css'
 import ProfilPicture from "../../dashboardHeader/ProfilPicture";
 import Logo from "../../dashboardHeader/Logo";
 import LatBar from "../LatBar";
 import RessourceLinks from "../RessourceLinks";
+import NewType from "./NewType";
+import NewRessource from "./NewRessource";
 
 
 
 function VideoP(){
+
+    //Etat pour controler l'affichage du formulaire d'un nouveau type
+    const [newType, setNewType] = useState(false)
+
+
+    //Etat pour controler l'affichage du formulaire d'une nouvelle ressource
+    const [newRessource, setNewRessource] = useState(false)
+
     return(
         <section>
             {/*Le Header */}
@@ -28,12 +38,34 @@ function VideoP(){
                 <section className = 'right-side'>
 
                     <section className = 'right-side-header'>
-                        <span className = 'title'>Les videos projecteur</span>
-                        <section className = 'new-salle-and-search'>
-                            <div className = 'new-salle'>Nouveau VP</div>
-                            <input type = 'search' placeholder = 'Rechercher un VP' className = 'new-salle search-field' />
+                        <span className = 'title'>Les autres ressources</span>
+                        <input type = 'search' placeholder = 'Rechercher une ressource' className = 'new-salle search-field for-ressource' />
+                    </section>
+                    <br /><br />
+
+                    {/* Selection du tpe de la ressource et bouton de creation */}
+                    <section className = 'big-display-type'>
+                        <section className = 'display-type'>
+                            <h4>Type de la ressource</h4> 
+                            <select id = 'display-type'  className = 'display-type-select'>
+                                <option>Video projecteur</option>
+                                <option>Vehicule</option>
+                                <option>Espace ouvert</option>
+                            </select>
+                        </section>
+                        <section className = 'display-type'>
+                            <div className = 'new-elt-button' onClick = {() => setNewType(true)}>Nouveau type</div>
+
+                            {/* Formulaire de nouveau type */}
+                            {newType ? <NewType setNewType = {setNewType} /> : null}
+
+                            <div className = 'new-elt-button' onClick = {() => setNewRessource(true)}>Nouvelle ressource</div>
+
+                            {/* Formulaire de nouvelle ressource */}
+                            {newRessource ? <NewRessource setNewRessource = {setNewRessource} /> : null}
                         </section>
                     </section>
+                    <hr />
 
                     {/*Type d'affichage des salles*/}
                     

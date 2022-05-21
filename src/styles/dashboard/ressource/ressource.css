@@ -33,15 +33,20 @@
     border-radius: 10px;
     font-size: 0.9em;
     cursor: pointer;
-    margin-right: 7px;
+    margin-right: 5px;
 }
 
 .search-field{
-    width: 200px;
+    width: 70%;
     border: none;
     text-align: left;
     font-family: inherit;
     cursor: auto;
+}
+
+
+.for-ressource{
+    width: 50%;
 }
 
 .search-field:focus{
@@ -49,15 +54,38 @@
 }
 
 .new-salle-and-search{
+    width: 50%;
     display: flex;
+    justify-content: space-between;
+}
+
+.big-display-type{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.new-elt-button{
+    background-color: #0043A7;
+    padding: 7px;
+    color: white;
+    border-radius: 3px;
+    margin-right: 5px;
+    height: 23px;
+    cursor: pointer;
 }
 
 .display-type{
     display: flex;
 }
 
+
+
+
 .display-type-select{
-    width: 50%;
+    width: 250px;
     background-color: #c4c4c4d8;
     border: none;
     margin-left: 10px;

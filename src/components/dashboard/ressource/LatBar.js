@@ -26,31 +26,13 @@ function LatBar({nom}){
                 <section className = 'lat-bar-item'>
                     <section>
                         <i></i>
-                        <span className = 'lat-bar-name'>Video projecteur</span>
+                        <span className = 'lat-bar-name'>Autre ressources</span>
                     </section>
                     <span class="material-symbols-outlined">chevron_right</span>
                 </section>
             </Link>
 
-            <Link to = '/dashboard/ressource/espace-vert' className = 'lat-bar-router-link'>
-                <section className = 'lat-bar-item'>
-                    <section>
-                        <i></i>
-                        <span>Espace vert</span>
-                    </section>
-                    <span class="material-symbols-outlined">chevron_right</span>
-                </section>
-            </Link>
-
-            <Link to = '/dashboard/ressource/vehicule' className = 'lat-bar-router-link'>
-                <section className = 'lat-bar-item'>
-                    <section>
-                        <i></i>
-                        <span>Vehicule</span>
-                    </section>
-                    <span class="material-symbols-outlined">chevron_right</span>
-                </section>
-            </Link>
+           
             {/*Bouton pour ajouter une nouvelle ressource. */}
             <br /><br />
             <div className = 'add-new-ressource'>Ajouter une nouvelle ressource</div>

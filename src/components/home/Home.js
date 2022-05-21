@@ -27,7 +27,7 @@ function Home(){
                 <section className = 'home-banner'>
                     <h3 className = 'banner-title'>Plannifiez des cours et réservez des salles en toute sécurité et fiabilité</h3>
                     <br />
-                    <input type = 'search' placeholder = 'Rechercher quelque chose' className = 'banner-search-field' />
+                    <input type = 'search' placeholder = 'Rechercher salle, equipement ...' className = 'banner-search-field' />
                     <br /><br /><br />
                     <section className = 'banner-foot'>
                         <div className = 'banner-button'>Consulter le planning</div>

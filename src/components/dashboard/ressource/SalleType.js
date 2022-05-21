@@ -4,7 +4,7 @@ import UnitSalle from "./UnitSalle";
 import '../../../styles/dashboard/ressource/salle-batiment.css'
 
 
-function SalleTaille(){
+function SalleType(){
 
     //Conteneur de l'ensemble qui contiendra la liste des batiments et salles.
     //Les salles
@@ -110,4 +110,4 @@ function SalleTaille(){
 }
 
 
-export default SalleTaille
+export default SalleType

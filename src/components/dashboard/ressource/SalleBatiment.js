@@ -6,6 +6,16 @@ import '../../../styles/dashboard/ressource/salle-batiment.css'
 
 function SalleBatiment(){
 
+    //Recuperation des salles classe par batiment.
+
+    fetch("http://192.168.8.100:8000/api/salle-batiment")
+    .then(function(res) {
+        console.log(res)
+    })
+    .catch(function() {
+
+    });
+
     //Conteneur de l'ensemble qui contiendra la liste des batiments et salles.
     
     let salleBatiment = [

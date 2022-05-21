@@ -8,18 +8,23 @@ import '../../../styles/dashboard/ressource/ressource.css'
 import Logo from "../dashboardHeader/Logo";
 import ProfilPicture from "../dashboardHeader/ProfilPicture";
 import LatBar from "./LatBar";
+import NewSalle from "./NewSalle";
 import RessourceLinks from "./RessourceLinks";
 import SalleBatiment from "./SalleBatiment";
-import SalleLoading from "./SalleLoading";
-import SalleTaille from "./SalleTaille";
+import SalleType from "./SalleType";
 
 
 function Ressource(){
 
     //Etat qui controle le type d'affichage des salles
-    const [displayType, setDisplayType] = useState('Taille')
+    const [displayType, setDisplayType] = useState('Batiment')
 
     //Fonction qui permet de changer le type d'affichage
+
+
+
+    //Etat qui controle l'affichage du formulaire de creation nouvelle salle.
+    const [newSalle, setNewSalle] = useState(false);
 
     return(
         <section>
@@ -43,7 +48,10 @@ function Ressource(){
                     <section className = 'right-side-header'>
                         <span className = 'title'>Les salles</span>
                         <section className = 'new-salle-and-search'>
-                            <div className = 'new-salle'>Nouvelle salle</div>
+                            <div className = 'new-salle' onClick = {() => setNewSalle(true)}>Nouvelle salle</div>
+
+                            {/* Affichage du formulaire de creation de la nouvelle salle */}
+                            {newSalle ? <NewSalle setNewSalle = {setNewSalle}/> : null}
                             <input type = 'search' placeholder = 'Rechercher une salle' className = 'new-salle search-field' />
                         </section>
                     </section>
@@ -53,8 +61,8 @@ function Ressource(){
                     <section className = 'display-type'>
                         <h4>Afficher par</h4> 
                         <select id = 'display-type' onChange = {() => setDisplayType(document.getElementById('display-type').value)} className = 'display-type-select'>
-                            <option>Taille</option>
                             <option>Batiment</option>
+                            <option>Type</option>
                         </select>
                     </section>
 
@@ -62,7 +70,7 @@ function Ressource(){
                     {/* <SalleLoading /> */}
                     {/*Affichage des salle en fonction de la selection */}
                     <br />
-                    {displayType === "Batiment" ? <SalleBatiment /> : <SalleTaille />}
+                    {displayType === "Batiment" ? <SalleBatiment /> : <SalleType />}
                     
 
                 </section>

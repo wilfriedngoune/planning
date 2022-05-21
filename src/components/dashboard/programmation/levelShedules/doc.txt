@@ -1,0 +1,7 @@
+dans ce dossier, on a : 
+
+Le dossier 
+
+LevelscheduleVisualization : qui concerne uniquement les emplois de temps visuele et pas editable affiche par niveau.
+
+LevelsheduleEdition : Ce fichier, pour les admins donne le droit de modifier les emplois de temps.
