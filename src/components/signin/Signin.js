@@ -8,6 +8,7 @@ import axios from 'axios';
 
 //css
 import '../../styles/login/login.css'
+import Loader from "./Loader";
 
 
 //Les urls
@@ -18,7 +19,17 @@ const Url = require('../../url');
 function Signin(){
 
     //Etat de la variable qui change la categorie du nouveau user qui sinscrit
-    const [userCat, setUserCat] = useState('Etudiant');
+    const [userCat, setUserCat] = useState('etudiant/');
+    const handleChangeCat = (cat) => {
+        if(cat === "Enseignant"){
+            setUserCat('enseignant/')
+        }
+        if(cat === "Etudiant" || cat === "En tant que.."){
+            setUserCat('etudiant/')
+        }
+    }
+
+
     //Etat des variable des valeur du formulaire
 
     const [noms, setNoms] = useState('')
@@ -26,7 +37,8 @@ function Signin(){
     const [password, setPassword] = useState('')
 
     //Etat de la variable qui active le loader
-    const [load, setLoad] = useState('Enregistrer')
+    const [load, setLoad] = useState(false)
+
     //Erreur lors de l'envoie du formulaire
     const [err, setErr] = useState(false)
 
@@ -35,50 +47,44 @@ function Signin(){
     //Methode qui envoi les elements d'un nouvel utilisateur dans la bd.
 
     const handleSubmit = () => {
-        console.log('envoie des donne')
-        console.log(Url.devUrl())
-        if(userCat === 'Etudiant'){
-            axios.post(Url.devUrl() + 'etudiant/',
-            {
-                "noms" : noms,
-                "email" : email,
-                "password" : password
-            },
+        
+        debugger 
+        axios.post(Url.devUrl() + userCat,
+        {
+            "noms" : noms,
+            "email" : email,
+            "password" : password
+        },
 
-            {
-                headers: {
-                    "Content-Type": "application/json", 
-                    "Accept": "application/json"
-                }
+        {
+            headers: {
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
             }
-
-            ).then((res) => {
-                
-                console.log('hjklkhhj')
-                console.log('response 1', res)
-                if(res.status === 200){
-                    setLoad('Loading...')
-                    const redirect = setTimeout(() => {
-                        window.location.href = "/dashboard"
-                    }, 1500);
-                }
-                else{
-                    setErr(true)
-                }
-            }).then((res) => {
-                console.log('reponse 2', res)
-                
-            }).catch((err) =>{
-                throw err
-            })
-
         }
-    }
+
+        ).then((res) => {
+            
+            console.log('hjklkhhj')
+            console.log('response 1', res)
+            if(res.status === 200){
+                setLoad(true)
+                const redirect = setTimeout(() => {
+                    window.location.href = "/dashboard"
+                }, 2000);
+            }
+            else{
+                setErr(true)
+            }
+        }).catch((err) =>{
+            throw err
+        })
+        
+}
 
     //lire les donne
 
     useEffect(() => {
-        console.log('jessi')
         axios.get(Url.devUrl() + 'etudiant/',
 
         ).then((res) => {
@@ -106,19 +112,19 @@ function Signin(){
                     
                     <input type = 'password' id = 'password' className = 'login-field' placeholder = 'Mot de passe' name = 'password' onChange = {() => setPassword(document.getElementById('password').value)}/> <span className = 'red-sign'>*</span>
 
-                    <select className = 'signin-select' id = 'userCat' onChange = {() => setUserCat(document.getElementById('userCat').value)}>
+                    <select className = 'signin-select' id = 'userCat' onChange = {() => handleChangeCat(document.getElementById('userCat').value)}>
                         <option>En tant que..</option>
                         <option>Etudiant</option>
                         <option>Enseignant</option>
                     </select> <span className = 'red-sign'>*</span>
 
                     <br /><br />
-                    {err ? <span className = 'red-sign'>Erreur !</span> : null}
+                    {err ? <span className = 'display-err'>Erreur !</span> : null}
 
                     <div 
                     className = 'login-submit' 
                     onClick = {() => handleSubmit()}>
-                    {load} 
+                    {load ? <Loader /> : <b>Enregistrer</b>}
                     </div>
                 </form>
             </section>
