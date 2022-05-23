@@ -3,6 +3,7 @@ import Header from "./Header"
 import "../../styles/home/home.css"
 import { useState } from "react"
 import Login from "../login/Login"
+import Signin from "../signin/Signin"
 
 
 
@@ -10,17 +11,22 @@ import Login from "../login/Login"
 function Home(){
 
     //Etat qui me permet de gerer l'activation et la desactivatio du login
-    
     const [activateLogin, setActivateLogin] = useState(false)
+    const [activateSignin, setActivateSignin] = useState(false)
+
+
     
     return(
         <section>
             {/*Affichage de la Login pop up */}
-            {console.log(activateLogin)}
             {activateLogin ? <Login /> : null}
 
+            {/*Affichage de la Sign pop up */}
+            {activateSignin ? <Signin /> : null}
+
+
             {/*Le composant header de la page d'accueil */}
-            <Header activateLogin = {activateLogin} setActivateLogin = {setActivateLogin}/>
+            <Header activateLogin = {activateLogin} setActivateLogin = {setActivateLogin} activateSignin = {activateSignin} setActivateSignin = {setActivateSignin}/>
 
             <br /><br /><br /><br /><br />
             <section className = "home-container">

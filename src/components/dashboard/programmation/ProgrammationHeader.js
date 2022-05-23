@@ -6,7 +6,7 @@ function ProgrammationHeader(){
         <section className = 'program-header-container'>
             <div className = 'new-program-button' title = 'Nouvel emploi de temps'>+</div>
             <section className = 'select-program-container'>
-                <span className = 'select-program-title'>Selectionner un emploi de temps : </span>
+                <span className = 'select-program-title'>Selectionner un emploi de temps  </span>
                 <select className = 'program-header-select'>
                     <option>Annee et semestre ...</option>
                     <option>2020 - S1</option>
