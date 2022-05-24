@@ -14,6 +14,7 @@ function Profil(){
                 <div className = 'display-name'>Wilfried NGOUNE</div>
                 <div className = 'display-email'>wilfriedngoune@gmail.com</div>
             </section>
+            <hr />
 
 
         </section>
