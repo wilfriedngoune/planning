@@ -35,7 +35,7 @@ function LatBar({nom}){
            
             {/*Bouton pour ajouter une nouvelle ressource. */}
             <br /><br />
-            <div className = 'add-new-ressource'>Ajouter une nouvelle ressource</div>
+            {/* <div className = 'add-new-ressource'>Ajouter une nouvelle ressource</div> */}
         </section>
     )
 }

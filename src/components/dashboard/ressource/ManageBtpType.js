@@ -1,26 +1,26 @@
 import React from "react";
-import '../../../../styles/dashboard/ressource/add-new-ressource.css'
+
+
+//css
+import '../../../styles/dashboard/ressource/add-new-ressource.css'
 
 
 
-function NewType({setNewType}){
+function ManageBtpType({setManageBtp}){
 
     //Fermeture de la popup
     const handleCloseInfo = () => {
-        setNewType(false)
+        setManageBtp(false)
     }
 
     return(
         <section className = 'infosalle-container'>
             <br /><br /><br />
             <section className = 'info-salle-popup'>
-                <div className = 'salle-name'>Nouveau type de ressource</div>
+                <div className = 'salle-name'>Batiments et types</div>
                 <br />
-               
-                <input type = 'text' placeholder = 'Nom du type' className = 'new-ressource-field'/>
-
-                <input type = 'text' placeholder = 'description' className = 'new-ressource-field'/>
-                <br /> <br />
+                
+                <br /><br />
                 {/*Les boutons du footer */}
                 <section className = 'salle-info-footer'>
                     <div className = 'salle-info-button'>Enregistrer</div>
@@ -32,4 +32,4 @@ function NewType({setNewType}){
     )
 }
 
-export default NewType
+export default ManageBtpType

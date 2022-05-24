@@ -1,5 +1,5 @@
 exports.devUrl = function(){
-    return 'http://172.20.10.2:8001/api/';
+    return 'http://192.168.8.100:8001/api/';
     
 }
 

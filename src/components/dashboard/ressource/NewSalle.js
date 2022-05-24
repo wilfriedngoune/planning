@@ -46,12 +46,6 @@ function NewSalle({setNewSalle}){
             <section className = 'info-salle-popup'>
                 <div className = 'salle-name'>Nouvelle salle</div>
                 <br />
-                <input type = 'number' placeholder = 'capacite de la salle' className = 'new-ressource-field'/>
-
-                <input type = 'text' placeholder = 'nom de la salle (ex. S006)' className = 'new-ressource-field'/>
-
-                <input type = 'number' placeholder = 'Etat electrique (1. Oui ou 0. Non)' max = "1" min = "0" className = 'new-ressource-field'/>
-
                 <select className = 'new-ressource-select'>
                     <option>Batiment...</option>
                     {/* Lister la liste de tous les batiment de la bd */}
@@ -71,6 +65,18 @@ function NewSalle({setNewSalle}){
                         )
                     }
                 </select>
+
+                <input type = 'text' placeholder = 'code de la salle (ex. S006)' className = 'new-ressource-field'/>
+
+                <input type = 'text' placeholder = 'nom de la salle (ex. Salle N6)' className = 'new-ressource-field'/>
+
+                <input type = 'number' placeholder = 'capacite de la salle' className = 'new-ressource-field'/>
+
+                
+
+                <input type = 'number' placeholder = 'Etat electrique (1. Oui ou 0. Non)' max = "1" min = "0" className = 'new-ressource-field'/>
+
+                
 
                 <br /><br />
                 {/*Les boutons du footer */}

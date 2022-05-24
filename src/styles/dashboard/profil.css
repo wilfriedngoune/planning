@@ -1,0 +1,36 @@
+
+
+.profil-container{
+    background-color: white;
+    width: 23%;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 5px;
+    position: absolute;
+    top: 60px;
+    left: 73%;
+    padding: 10px;
+}
+
+.display-pp{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: green;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-left: 40%;
+}
+
+.pp-and-email-container{
+    text-align: center;
+}   
+
+.display-name{
+    font-weight: 600;
+
+}
+
+.display-email{
+    font-size: 0.9em;
+}

@@ -27,7 +27,7 @@ function AdminEditableShedule(){
                 <tbody>
                     <tr>
                         <th>7h - 9h55</th>
-                        <td><AdminEditableSheduleInfo /></td>
+                        <td id = '1'><AdminEditableSheduleInfo /></td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>

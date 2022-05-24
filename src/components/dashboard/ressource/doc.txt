@@ -8,3 +8,5 @@ SalleBatiment : C'est le composant qui affiche les salles enfonction du batiment
 UnitSalle : C'est le composant qui ressort uniquement le petit carre salle.
 SalleTaille : Ce composant affiche les salles en fonction de la taille. Meme style que salle-batiment
 SalleLoading : Ce composant c'est le loader des affichage des salles.
+
+ManageBtpType : c'est le composant qui permet de gerer les batiment creer, modifier et supprimer. CSS : info-salle.css

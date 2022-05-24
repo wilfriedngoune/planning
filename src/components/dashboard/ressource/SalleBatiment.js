@@ -1,20 +1,20 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import '../../../styles/dashboard/ressource/salle-batiment.css'
 import UnitSalle from "./UnitSalle";
 import '../../../styles/dashboard/ressource/salle-batiment.css'
+import axios from "axios";
+
+
+//Les Urls
+const Url = require('../../../url')
 
 
 function SalleBatiment(){
 
-    //Recuperation des salles classe par batiment.
+    //Etat de la variable qui recupere toutes les salles par batiment
+    const[sallebatiment, setSalleBatiment] = useState([{}])
 
-    fetch("http://192.168.8.100:8000/api/salle-batiment")
-    .then(function(res) {
-        console.log(res)
-    })
-    .catch(function() {
 
-    });
 
     //Conteneur de l'ensemble qui contiendra la liste des batiments et salles.
     
@@ -131,6 +131,19 @@ function SalleBatiment(){
         }
     ]
 
+    //Recuperation de la liste des salles en fonction des batiment
+    
+    useEffect(() => {
+        axios.get( Url.devUrl() + 'batiment-salle/',
+
+        ).then((res) => {
+            console.log(res.data)
+            setSalleBatiment(res.data)
+            console.log(sallebatiment)
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
 
    
     return(

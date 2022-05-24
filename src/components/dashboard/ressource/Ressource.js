@@ -8,6 +8,7 @@ import '../../../styles/dashboard/ressource/ressource.css'
 import Logo from "../dashboardHeader/Logo";
 import ProfilPicture from "../dashboardHeader/ProfilPicture";
 import LatBar from "./LatBar";
+import ManageBtpType from "./ManageBtpType";
 import NewSalle from "./NewSalle";
 import RessourceLinks from "./RessourceLinks";
 import SalleBatiment from "./SalleBatiment";
@@ -25,6 +26,12 @@ function Ressource(){
 
     //Etat qui controle l'affichage du formulaire de creation nouvelle salle.
     const [newSalle, setNewSalle] = useState(false);
+
+
+    //Etat qui affiche le popup de gestion des barimwnt et des salles
+    const [manageBtp, setManageBtp] = useState(false);
+
+
 
     return(
         <section>
@@ -48,7 +55,7 @@ function Ressource(){
                     <section className = 'right-side-header'>
                         <span className = 'title'>Les salles</span>
                         <section className = 'new-salle-and-search'>
-                            <div className = 'new-salle' onClick = {() => setNewSalle(true)}>Nouvelle salle</div>
+                            <div className = 'button-btp' onClick = {() => setNewSalle(true)}>Nouvelle salle</div>
 
                             {/* Affichage du formulaire de creation de la nouvelle salle */}
                             {newSalle ? <NewSalle setNewSalle = {setNewSalle}/> : null}
@@ -59,12 +66,17 @@ function Ressource(){
                     {/*Type d'affichage des salles*/}
                     <br />
                     <section className = 'display-type'>
-                        <h4>Afficher par</h4> 
-                        <select id = 'display-type' onChange = {() => setDisplayType(document.getElementById('display-type').value)} className = 'display-type-select'>
-                            <option>Batiment</option>
-                            <option>Type</option>
-                        </select>
+                        <section className = 'display-type'>
+                            <h4>Afficher par</h4> 
+                            <select id = 'display-type' onChange = {() => setDisplayType(document.getElementById('display-type').value)} className = 'display-type-select'>
+                                <option>Batiment</option>
+                                <option>Type</option>
+                            </select>
+                        </section>
+                        <div className = 'button-btp' onClick = {() => setManageBtp(true)}>Gerer les batiments et les types</div>
+                        {manageBtp ? <ManageBtpType setManageBtp = {setManageBtp} /> : null}
                     </section>
+                    <hr />
 
                     {/*Affichage du loader */}
                     {/* <SalleLoading /> */}

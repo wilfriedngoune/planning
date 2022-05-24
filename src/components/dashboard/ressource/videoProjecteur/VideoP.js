@@ -18,6 +18,21 @@ function VideoP(){
     //Etat pour controler l'affichage du formulaire d'une nouvelle ressource
     const [newRessource, setNewRessource] = useState(false)
 
+
+    let type = [
+        {
+            'code' : "1", 
+            'nom' : "Video projecteur"
+        },
+        {
+            'code' : "2", 
+            'nom' : "Vehicule"
+        },
+        {
+            'code' : "3", 
+            'nom' : "Espace veert"
+        }
+    ]
     return(
         <section>
             {/*Le Header */}
@@ -48,9 +63,12 @@ function VideoP(){
                         <section className = 'display-type'>
                             <h4>Type de la ressource</h4> 
                             <select id = 'display-type'  className = 'display-type-select'>
-                                <option>Video projecteur</option>
-                                <option>Vehicule</option>
-                                <option>Espace ouvert</option>
+                                {/* Lister la liste de tous les type de la ressource */}
+                                {
+                                    type.map((type) => 
+                                    <option id = {type.code}>{type.nom}</option>
+                                    )
+                                }
                             </select>
                         </section>
                         <section className = 'display-type'>

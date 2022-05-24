@@ -18,7 +18,8 @@ function AdminEditableSheduleInfo(){
         <Fragment>
             <section onClick = {() => HandleOpenAdminEdit()} className = 'edit-info-container' title = 'Cliquer pour editer'>
             INF3015 <br />
-            A3
+            A3 <br />
+            Dr Valery Monthe
             </section>
             { displayAdminEdit ? <AdminEditableSheduleInfoPopup setDisplayAdminEdit = {setDisplayAdminEdit} /> : null}
         </Fragment>

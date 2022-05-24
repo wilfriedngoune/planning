@@ -15,7 +15,6 @@ function AdminEditableSheduleInfoPopup({setDisplayAdminEdit}){
             <section className = 'edit-popup-box'>
                 <div className = 'edit-popup-title'>Editer la case</div>
                 <section className = 'edit-element-container'>
-                    <h5>Renseigner .. </h5>
                     {/* Pour l'ue */}
                     <select className = 'edit-element-item'>
                         <option>UE...</option>
@@ -24,13 +23,21 @@ function AdminEditableSheduleInfoPopup({setDisplayAdminEdit}){
                         <option>INF3036</option>
                     </select>
 
+
+                    {/* Pour l'enseignant */}
+                    <select className = 'edit-element-item'>
+                        <option>Enseignant...</option>
+                        <option>Valery Monthe</option>
+                        <option>Jiomekong Fidele</option>
+                    </select>
+
                     {/* Pour la salle */}
                     <select className = 'edit-element-item'>
                         <option>Salle...</option>
                         <option>A250</option>
                         <option>A3</option>
                     </select>
-
+                    
                 </section>
 
                 <br /><br />
