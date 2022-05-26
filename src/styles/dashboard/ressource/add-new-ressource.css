@@ -10,7 +10,7 @@
 }
 
 .info-salle-popup{
-    width: 30%;
+    width: 40%;
     padding: 20px;
     background-color: white;
     color: black;
@@ -75,5 +75,29 @@
 
 .display-error{
     color: red;
+    font-size: 0.9em;
+}
+
+
+/* Style du composant UnitRessource */
+
+.unit-ressource-container{
+    background-color: #0F42C7;
+    padding: 5px;
+    font-size: 0.85em;
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.ressource-item-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ressource-info{
     font-size: 0.9em;
 }

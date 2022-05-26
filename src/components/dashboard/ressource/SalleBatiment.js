@@ -26,81 +26,28 @@ function SalleBatiment(){
                     'nom' : 'R110',
                     'etat_electricite' : 'Oui',
                     'capacite_cours' : 100,
-                    'capacite_exam' : 80,
+                    'type' : 'Salle simple',
                 },
     
                 {
                     'nom' : 'R107',
                     'etat_electricite' : 'Oui',
                     'capacite_cours' : 100,
-                    'capacite_exam' : 80,
+                    'type' : 'Salle simple',
                 },
     
                 {
                     'nom' : 'S001',
                     'etat_electricite' : 'Oui',
                     'capacite_cours' : 110,
-                    'capacite_exam' : 80,
+                    'type' : 'Salle simple',
                 },
                 {
                     'nom' : 'R110',
                     'etat_electricite' : 'Oui',
                     'capacite_cours' : 100,
-                    'capacite_exam' : 80,
+                    'type' : 'Salle simple',
                 },
-    
-                {
-                    'nom' : 'R107',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'capacite_exam' : 80,
-                },
-    
-                {
-                    'nom' : 'S001',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 110,
-                    'capacite_exam' : 80,
-                },
-                {
-                    'nom' : 'R110',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'capacite_exam' : 80,
-                },
-    
-                {
-                    'nom' : 'R107',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'capacite_exam' : 80,
-                },
-    
-                {
-                    'nom' : 'S001',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 110,
-                    'capacite_exam' : 80,
-                },{
-                    'nom' : 'R110',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'capacite_exam' : 80,
-                },
-    
-                {
-                    'nom' : 'R107',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'capacite_exam' : 80,
-                },
-    
-                {
-                    'nom' : 'S001',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 110,
-                    'capacite_exam' : 80,
-                }
             ]
         },
 
@@ -111,24 +58,54 @@ function SalleBatiment(){
                     'nom' : 'S006',
                     'etat_electricite' : 'Oui',
                     'capacite_cours' : 120,
-                    'capacite_exam' : 90,
+                    'type' : 'Salle simple',
                 },
     
                 {
                     'nom' : 'S008',
                     'etat_electricite' : 'Non',
                     'capacite_cours' : 100,
-                    'capacite_exam' : 80,
+                    'type' : 'Salle simple',
                 },
     
                 {
                     'nom' : 'S007',
                     'etat_electricite' : 'Non',
                     'capacite_cours' : 110,
-                    'capacite_exam' : 80,
+                    'type' : 'Salle simple',
                 },
             ]
-        }
+        },
+        {
+            'nom' : 'Marche 1001',
+            'salles' : [
+                {
+                    'nom' : 'A1001',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 1000,
+                    'type' : 'Amphitheatre',
+                },
+    
+                {
+                    'nom' : 'A1002',
+                    'etat_electricite' : 'Non',
+                    'capacite_cours' : 1000,
+                    'type' : 'Amphitheatre',
+                },
+            ]
+        },
+        {
+            'nom' : 'Face scolarite',
+            'salles' : [
+                {
+                    'nom' : 'A3',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 300,
+                    'type' : 'Amphitheatre',
+                },
+            ]
+        },
+
     ]
 
     //Recuperation de la liste des salles en fonction des batiment
@@ -146,6 +123,7 @@ function SalleBatiment(){
     }, [])
 
    
+
     return(
         <section>
             {
@@ -153,12 +131,12 @@ function SalleBatiment(){
                 (
                         (batiment) => 
                     <section> 
-                        <div className = 'btp-title'>{batiment.nom}</div>
+                        <div id = {batiment.nom} className = 'btp-title'>{batiment.nom}</div>
                         <section className = 'display-salle'>
                             {
                                 batiment.salles.map(
                                     (salle) =>
-                                    <Fragment><UnitSalle nom = {salle.nom} batiment = {batiment.nom} capCours  = {salle.capacite_cours} capExam = {salle.capacite_exam} electricite = {salle.etat_electricite} /></Fragment>
+                                    <Fragment id = {salle.nom}><UnitSalle nom = {salle.nom} batiment = {batiment.nom} capCours  = {salle.capacite_cours} type = {salle.type} electricite = {salle.etat_electricite} /></Fragment>
                                 )
                             }
                         </section>

@@ -1,109 +1,111 @@
-import React, { Fragment } from "react";
-import '../../../styles/dashboard/ressource/salle-batiment.css'
+import React, { Fragment, useEffect, useState } from "react";
 import UnitSalle from "./UnitSalle";
+import axios from "axios";
+
+
+//css
+import '../../../styles/dashboard/ressource/salle-batiment.css'
 import '../../../styles/dashboard/ressource/salle-batiment.css'
 
+
+//Les Urls
+const Url = require('../../../url')
 
 function SalleType(){
 
     //Conteneur de l'ensemble qui contiendra la liste des batiments et salles.
     //Les salles
-    let salle = [
+    let salleType = [
         {
-            'nom' : 'R110',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 100,
-            'capacite_exam' : 80,
-            'batiment' : 'Bloc pedagogique'
-        },
-        {
-            'nom' : 'S006',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 100,
-            'capacite_exam' : 80,
-            'batiment' : 'Departement informatique'
-        },
-
-        {
-            'nom' : 'S016',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 200,
-            'capacite_exam' : 80,
-            'batiment' : 'Departement mathematique'
-        },
-
-    ]
-
-    //Les Amphis
-    let amphi = [
-        {
-            'nom' : 'A250',
-            'etat_electricite' : 'Non',
-            'capacite_cours' : 350,
-            'capacite_exam' : 250,
-            'batiment' : 'Face decanat'
-        },
-        {
-            'nom' : 'A3',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 300,
-            'capacite_exam' : 250,
-            'batiment' : 'Scolarite'
-        },
-        {
-            'nom' : 'A350',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 500,
-            'capacite_exam' : 80,
-            'batiment' : 'Face decanat'
+            'nom' : 'Salle simple',
+            'salles' : [
+                {
+                    'nom' : 'R110',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 100,
+                    'batiment' : 'Bloc pedagogique',
+                },
+    
+                {
+                    'nom' : 'SOO6',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 100,
+                    'batiment' : 'Departement Informatique',
+                },
+                {
+                    'nom' : 'S008',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 100,
+                    'batiment' : 'Departement Informatique',
+                },
+            ]
         },
 
         {
-            'nom' : 'A1001',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 1500,
-            'capacite_exam' : 1000,
-            'batiment' : 'Marché 1001'
-        },
-
-        {
-            'nom' : 'A1002',
-            'etat_electricite' : 'Oui',
-            'capacite_cours' : 1500,
-            'capacite_exam' : 1000,
-            'batiment' : 'Marché 1001'
-        },
-
+            'nom' : 'Amphitheatre',
+            'salles' : [
+                {
+                    'nom' : 'A350',
+                    'etat_electricite' : 'Non',
+                    'capacite_cours' : 350,
+                    'batiment' : 'Face decanat',
+                },
+    
+                {
+                    'nom' : 'A3',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 300,
+                    'batiment' : 'Face scolarite',
+                },
+                {
+                    'nom' : 'A1001',
+                    'etat_electricite' : 'Oui',
+                    'capacite_cours' : 1000,
+                    'batiment' : 'Marche 1001',
+                },
+            ]
+        }
     ]
     
     
+    //Etat de la variable qui contient le tableau de json a manipuler
+    const [salle, setSalle] = useState(salleType)
 
+     //Recuperation de la liste des salles en fonction des type 
+     useEffect(() => {
+        axios.get( Url.devUrl() + 'type-salle/',
 
+        ).then((res) => {
+            console.log(res.data)
+            setSalle(res.data)
+            console.log(salle)
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
 
    
     return(
         <section>
             <section> 
-                <div className = 'btp-title'>Salles</div>
-                <section className = 'display-salle'>
-                    {
-                        salle.map(
-                            (salle) =>
-                            <Fragment><UnitSalle nom = {salle.nom} batiment = {salle.batiment} capCours  = {salle.capacite_cours} capExam = {salle.capacite_exam} electricite = {salle.etat_electricite} /></Fragment>
-                        )
-                    }
-                </section>
-                <br />
-
-                <div className = 'btp-title'>Amphitheatres</div>
-                <section className = 'display-salle'>
-                    {
-                        amphi.map(
-                            (salle) =>
-                            <Fragment><UnitSalle nom = {salle.nom} batiment = {salle.batiment} capCours  = {salle.capacite_cours} capExam = {salle.capacite_exam} electricite = {salle.etat_electricite} /></Fragment>
-                        )
-                    }
-                </section>
+            {
+                salleType.map
+                (
+                        (type) => 
+                    <section> 
+                        <div className = 'btp-title'>{type.nom}</div>
+                        <section className = 'display-salle'>
+                            {
+                                type.salles.map(
+                                    (salle) =>
+                                    <Fragment><UnitSalle nom = {salle.nom} batiment = {salle.batiment} capCours  = {salle.capacite_cours} electricite = {salle.etat_electricite} type = {type.nom} /></Fragment>
+                                )
+                            }
+                        </section>
+                        <br />
+                    </section>
+                )
+            }
             </section>
         </section>
     )

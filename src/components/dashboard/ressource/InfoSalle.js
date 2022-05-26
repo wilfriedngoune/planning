@@ -9,7 +9,7 @@ import '../../../styles/dashboard/ressource/info-salle.css'
 //Les Urls
 const Url = require('../../../url')
 
-function InfoSalle({nom, batiment, capCours, capExam, electricite, setSalleClick}){
+function InfoSalle({id, nom, batiment, capCours, type, electricite, setSalleClick}){
 
     //Fermeture de la popup
     const handleCloseInfo = () => {
@@ -47,11 +47,12 @@ function InfoSalle({nom, batiment, capCours, capExam, electricite, setSalleClick
 
             }
         ).then((res) => {
-            console.log(res)
+            console.log(res.data)
         }).catch((err) => {
             throw err
         })
     }
+
 
     //Variable de type et de batiment
 
@@ -93,6 +94,19 @@ function InfoSalle({nom, batiment, capCours, capExam, electricite, setSalleClick
 
     ]
 
+    //Suppression d'une salle
+    const handleDelete = () => {
+        axios.post(Url.devUrl() + '' + id,
+
+        ).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+            throw err
+        })
+        setSalleClick(false)
+
+    }
+
 
     return(
         <section className = 'infosalle-container'>
@@ -129,7 +143,7 @@ function InfoSalle({nom, batiment, capCours, capExam, electricite, setSalleClick
                 </section>
 
                 <section className = 'info-and-form'>
-                    <div className = 'salle-info'>Type de la salle <b>Salle simple</b> </div>
+                    <div className = 'salle-info'>Type de la salle <b>{type}</b> </div>
                     {updateSalle ? <select id = 'type' className = 'update-select' onChange = {() => setType(document.getElementById('type').value)}>
                         <option>Type</option>
                         {
@@ -146,7 +160,7 @@ function InfoSalle({nom, batiment, capCours, capExam, electricite, setSalleClick
                 {/*Les boutons du footer */}
                 <section className = 'salle-info-footer'>
                     <div className = 'salle-info-button' onClick = {() => handleUpdate()}>Modifier</div>
-                    <div className = 'salle-info-button red-back'>Supprimer</div>
+                    <div className = 'salle-info-button red-back' onClick = {() => handleDelete()}>Supprimer</div>
                     <div className = 'salle-info-button gray-back' onClick = {() => {handleCloseInfo()}}>Annuler</div>
                     
                 </section>

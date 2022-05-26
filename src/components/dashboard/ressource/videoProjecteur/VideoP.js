@@ -6,6 +6,7 @@ import LatBar from "../LatBar";
 import RessourceLinks from "../RessourceLinks";
 import NewType from "./NewType";
 import NewRessource from "./NewRessource";
+import UnitRessource from "./UnitRessource";
 
 
 
@@ -18,21 +19,54 @@ function VideoP(){
     //Etat pour controler l'affichage du formulaire d'une nouvelle ressource
     const [newRessource, setNewRessource] = useState(false)
 
-
+    //Tableau de tout les type de ressource de la base de donnee
     let type = [
         {
-            'code' : "1", 
+            'code' : 1, 
             'nom' : "Video projecteur"
         },
         {
-            'code' : "2", 
+            'code' : 2, 
             'nom' : "Vehicule"
         },
         {
-            'code' : "3", 
+            'code' : 3, 
             'nom' : "Espace veert"
         }
     ]
+
+    //Tableau de toute les ressource de la base de donne avec leur type
+    let T = [
+        {
+            'code' : '1',
+            'nom' : 'VP2',
+            'description' : 'le video projecteur du departement informatique',
+            'idType' : 1,
+        },
+        {
+            'code' : 2,
+            'nom' : 'Bus 3',
+            'description' : 'Le 3 eme bus blanc de la faculte',
+            'idType' : 2,
+        },{
+            'code' : 3,
+            'nom' : 'Grand vitara',
+            'description' : 'La voiture du recteur',
+            'idType' : 2,
+        },
+        {
+            'code' : 4,
+            'nom' : 'Espace ouvert calcul scientifique',
+            'description' : "L'espace ouvert qui se situe a cote du calcul scientifique",
+            'idType' : 3,
+        }
+
+    ]
+
+    //Etat qui contient le type de la ressource a un instant t
+    const [typeRessource, setTypeRessource] = useState(1)
+    console.log(typeRessource)
+
     return(
         <section>
             {/*Le Header */}
@@ -62,11 +96,11 @@ function VideoP(){
                     <section className = 'big-display-type'>
                         <section className = 'display-type'>
                             <h4>Type de la ressource</h4> 
-                            <select id = 'display-type'  className = 'display-type-select'>
+                            <select id = 'display-type'  className = 'display-type-select' onChange = {() => setTypeRessource(document.getElementById('display-type').value)}>
                                 {/* Lister la liste de tous les type de la ressource */}
                                 {
                                     type.map((type) => 
-                                    <option id = {type.code}>{type.nom}</option>
+                                    <option id = {type.code} value = {type.code}>{type.nom}</option>
                                     )
                                 }
                             </select>
@@ -84,10 +118,16 @@ function VideoP(){
                         </section>
                     </section>
                     <hr />
-
-                    {/*Type d'affichage des salles*/}
-                    
-                    
+                    <br />
+                    {/*Affichage des ressource en fonction type selectionne*/}
+                    <section className = 'ressource-item-container'>
+                        {
+                            T.map((ressource) => 
+                            ressource.idType == typeRessource ? <UnitRessource nom = {ressource.nom} description = {ressource.description} id = {ressource.code}/> : null
+                            )
+                        }
+                    </section>
+                
 
                 </section>
             </section>

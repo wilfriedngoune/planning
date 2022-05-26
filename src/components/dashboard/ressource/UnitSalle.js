@@ -6,7 +6,7 @@ import '../../../styles/dashboard/ressource/ressource.css'
 import InfoSalle from "./InfoSalle";
 
 
-function UnitSalle({nom, batiment, capCours, capExam, electricite}){
+function UnitSalle({nom, batiment, capCours, type, electricite}){
 
     //Etat de la variable qui precise si la salle a ete clique.
     const [salleClick, setSalleClick] = useState(false)
@@ -20,7 +20,7 @@ function UnitSalle({nom, batiment, capCours, capExam, electricite}){
             <section className = 'unit-salle' onClick = {() => handleOpenInfo()}>
                 <span>{nom}</span>
             </section>
-            {salleClick ? <InfoSalle setSalleClick = {setSalleClick} nom = {nom} batiment = {batiment} capCours = {capCours} capExam = {capExam} electricite = {electricite}  /> : null}
+            {salleClick ? <InfoSalle setSalleClick = {setSalleClick} nom = {nom} batiment = {batiment} capCours = {capCours} type = {type} electricite = {electricite}  /> : null}
         </Fragment>
     )
 }
