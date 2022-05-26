@@ -18,7 +18,7 @@ function  Programmation() {
                 </section>
             </section>
             <br /><br /><br />
-            <ProgrammationAdmin />
+            {/* <ProgrammationAdmin /> */}
             {/* <ProgrammationSimpleUser /> */}
         </section>
     )
