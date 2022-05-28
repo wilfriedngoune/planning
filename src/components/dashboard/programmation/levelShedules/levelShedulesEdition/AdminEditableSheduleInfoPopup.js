@@ -42,7 +42,7 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
 
 
         //on verifie que si la case est vide, on fait un ajout
-        if(indexOfElt() === -1 && (ue !== '' || enseignant !== '' ||salle !== '')){
+        if(indexOfElt() === -1 && (ue !== '' && enseignant !== '' &&salle !== '')){
             //Chargement des nouvelle valeur dans l'objet
             tmpItem.plage = id
             tmpItem.ue = ue
@@ -54,7 +54,21 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
         }
 
         if(indexOfElt() !== -1){
-            
+            //Au cas ou il modifie une valeur
+            if(ue !== '' || enseignant !== '' || salle !== ''){
+                tmpItem.plage = id
+
+                ue === '' ? tmpItem.ue = caseValue[indexOfElt()].ue : tmpItem.ue = ue
+
+                enseignant === '' ? tmpItem.enseignant = caseValue[indexOfElt()].enseignant : tmpItem.enseignant = enseignant
+
+
+                salle === '' ? tmpItem.salle = caseValue[indexOfElt()].salle : tmpItem.salle = salle
+
+                
+                //Ajout de l'objet dans le tableau
+                finalTable.push(tmpItem)
+            }
         }
 
         setDisplayAdminEdit(false)
