@@ -32,7 +32,7 @@ function AdminEditableSheduleInfo({id, caseValue, setTmpCaseValue}){
             {isOccupied() === -1 ? <span>&nbsp;</span> : <Fragment>
                 <span>{caseValue[isOccupied()].ue}</span> <br />
                 <span>{caseValue[isOccupied()].salle}</span> <br />
-                Dr <span>{caseValue[isOccupied()].enseignant}</span>
+                <span>Dr {caseValue[isOccupied()].enseignant}</span>
             </Fragment>}
             </section>
             {/* Affiche de la popup de modification d'une case */}

@@ -68,21 +68,34 @@ function SalleType(){
     ]
     
     
+    
     //Etat de la variable qui contient le tableau de json a manipuler
-    const [salle, setSalle] = useState(salleType)
+    const [salle, setSalle] = useState([{}])
+    const [x, setX] = useState('')
+
+    
+    
 
      //Recuperation de la liste des salles en fonction des type 
-     useEffect(() => {
-        axios.get( Url.devUrl() + 'type-salle/',
+     useEffect(() => { 
+         //Fonction qui permet de recuperer les batiment par salle dans la base de 
+        const getBatimentSalle = () => {
+        axios.get(Url.devUrl() + 'batiment-salle/',
 
-        ).then((res) => {
-            console.log(res.data)
-            setSalle(res.data)
-            console.log(salle)
-        }).catch((err) => {
-            throw err
-        })
+            ).then((res) => {
+                console.log('la variable que je prends', res.data)
+                setSalle(res.data)
+                console.log('La variable a jour', salle)
+                setX('bonjour')
+                console.log(x)
+            }).catch((err) => {
+                throw err
+            })
+        }
+        getBatimentSalle()
     }, [])
+
+
 
    
     return(

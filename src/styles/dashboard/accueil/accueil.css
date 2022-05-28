@@ -2,7 +2,7 @@
 
 .accueil-big-section{
     display: flex;
-    width: 95%;
+    width: 98%;
     margin: auto;
     flex-wrap: wrap;
 }
@@ -23,6 +23,7 @@
     font-size: 4em;
     text-align: center;
     font-weight: 600;
+
 }
 
 .accueil-logo{

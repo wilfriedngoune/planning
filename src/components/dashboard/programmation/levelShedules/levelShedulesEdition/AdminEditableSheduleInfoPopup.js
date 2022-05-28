@@ -42,7 +42,7 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
 
 
         //on verifie que si la case est vide, on fait un ajout
-        if(indexOfElt() === -1){
+        if(indexOfElt() === -1 && (ue !== '' || enseignant !== '' ||salle !== '')){
             //Chargement des nouvelle valeur dans l'objet
             tmpItem.plage = id
             tmpItem.ue = ue
@@ -51,6 +51,10 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
 
             //Ajout de l'objet dans le tableau
             finalTable.push(tmpItem)
+        }
+
+        if(indexOfElt() !== -1){
+            
         }
 
         setDisplayAdminEdit(false)

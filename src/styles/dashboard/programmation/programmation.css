@@ -16,3 +16,42 @@
     margin-bottom: -10px;
 }
 
+
+.print-button{
+    background-color: #6000C0;
+    text-align: center;
+    font-weight: 600;
+    padding: 7px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 40%;
+}
+
+
+
+
+
+/*  Style du composant PrintHeader*/
+
+.print-big-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.print-header-elt{
+    text-align: center;
+    width: 30%;
+    font-weight: 600;
+}
+
+.academic-year-display{
+    font-weight: 600;
+    margin-left: 27%;
+}
+
+.print-big-title{
+    font-size: 1.1em;
+}
+

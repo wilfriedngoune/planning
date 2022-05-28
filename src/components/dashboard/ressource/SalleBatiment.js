@@ -9,10 +9,11 @@ import axios from "axios";
 const Url = require('../../../url')
 
 
+
+
 function SalleBatiment(){
 
-    //Etat de la variable qui recupere toutes les salles par batiment
-    const[sallebatiment, setSalleBatiment] = useState([{}])
+    
 
 
 
@@ -48,7 +49,8 @@ function SalleBatiment(){
                     'capacite_cours' : 100,
                     'type' : 'Salle simple',
                 },
-            ]
+            ],
+            "update_at" : '12122'
         },
 
         {
@@ -74,7 +76,8 @@ function SalleBatiment(){
                     'capacite_cours' : 110,
                     'type' : 'Salle simple',
                 },
-            ]
+            ],
+            "update_at" : '12122'
         },
         {
             'nom' : 'Marche 1001',
@@ -92,7 +95,8 @@ function SalleBatiment(){
                     'capacite_cours' : 1000,
                     'type' : 'Amphitheatre',
                 },
-            ]
+            ],
+            "update_at" : '12122'
         },
         {
             'nom' : 'Face scolarite',
@@ -103,26 +107,46 @@ function SalleBatiment(){
                     'capacite_cours' : 300,
                     'type' : 'Amphitheatre',
                 },
-            ]
+            ],
+            "update_at" : '12122'
         },
 
     ]
 
+    let tmp = {
+        code: "DEPARTEMENT",
+        created_at: null,
+        facultes_id: 1,
+        id: 1,
+        localisation: null,
+        nom: "Departement de Math-Info",
+        salles: [
+
+        ],
+        updated_at: null
+    }
+
+    //Etat de la variable qui recupere toutes les salles par batiment
+    const[x, setX] = useState([])
+
+
     //Recuperation de la liste des salles en fonction des batiment
-    
     useEffect(() => {
-        axios.get( Url.devUrl() + 'batiment-salle/',
+        axios.get(Url.devUrl() + 'batiment-salle/',
 
         ).then((res) => {
             console.log(res.data)
-            setSalleBatiment(res.data)
-            console.log(sallebatiment)
+            if(res.data){
+                setX(res.data)
+                console.log('ouiii')
+            }
+            
         }).catch((err) => {
             throw err
         })
     }, [])
 
-   
+    console.log(x)
 
     return(
         <section>
