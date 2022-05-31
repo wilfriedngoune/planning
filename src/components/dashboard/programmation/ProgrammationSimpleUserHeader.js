@@ -7,12 +7,6 @@ function ProgrammationSimpleUserHeader(){
             <section className = 'select-program-container'>
                 <span className = 'select-program-title'>Selectionner un emploi de temps  </span>
 
-                <select className = 'program-header-select'>
-                    <option>De ... </option>
-                    <option>Cours</option>
-                    <option>Examen</option>
-                    <option>TD</option>     
-                </select>
 
                 <select className = 'program-header-select'>
                     <option> Afficher le ...</option>
