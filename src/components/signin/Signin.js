@@ -47,8 +47,7 @@ function Signin({setActivateSignin}){
     //Methode qui envoi les elements d'un nouvel utilisateur dans la bd.
 
     const handleSubmit = () => {
-        
-        debugger 
+         
         axios.post(Url.devUrl() + userCat,
         {
             "noms" : noms,
@@ -64,36 +63,22 @@ function Signin({setActivateSignin}){
         }
 
         ).then((res) => {
-            
-            console.log('hjklkhhj')
-            console.log('response 1', res)
-            if(res.status === 200){
+            if(res.status === 201){
+                localStorage.setItem("email", res.data.email)
                 setLoad(true)
                 const redirect = setTimeout(() => {
                     window.location.href = "/dashboard"
                 }, 2000);
             }
-            else{
-                setErr(true)
-            }
+
         }).catch((err) =>{
+            setErr(true)
             throw err
         })
         
 }
 
-    //lire les donne
-
-    useEffect(() => {
-        axios.get(Url.devUrl() + 'etudiant/',
-
-        ).then((res) => {
-            console.log('resultat de la requette')
-            console.log(res.data)
-        }).catch((err) => {
-            throw err
-        })
-    }, [])
+    
     
 
 

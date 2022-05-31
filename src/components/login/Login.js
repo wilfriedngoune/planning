@@ -26,7 +26,7 @@ function Login({setActivateLogin}){
 
     //Fonction qui envoit les donnee
     const handleSubmit = () => {
-        axios.post(Url.devUrl() + 'utilisateur',
+        axios.post( Url.devUrl() + 'utilisateur',
         {
             'email' : email,
             'password' : password
@@ -34,19 +34,16 @@ function Login({setActivateLogin}){
 
         ).then((res) => {
             console.log(res.data)
-            if(res.data.email){
-                console.log(res.data.email)
-                setLoad(true)
-                const redirect = setTimeout(() => {
-                    window.location.href = "/dashboard"
-                }, 2000);
-            }
-            else{
-                setErr(true)
-            }
+            localStorage.setItem("email", res.data.email)
+            setLoad(true)
+            const redirect = setTimeout(() => {
+                window.location.href = "/dashboard"
+            }, 2000);
+
 
         }).catch((err) => {
-            throw err
+            console.log(err)
+            setErr(true)
         })
     }
 
@@ -68,7 +65,7 @@ function Login({setActivateLogin}){
                     
                     <input type = 'password' id = 'password' className = 'login-field' placeholder = 'Mot de passe' onChange = {() => setPassword(document.getElementById('password').value)} /><span className = 'red-sign'>*</span>
                     <br />
-                    {err ? <div className = 'display-error'>Email ou Password invalide</div> : null}
+                    {err ? <div className = 'display-error'>Email ou password invalide</div> : null}
 
                     <div className = 'login-submit' onClick = {() => handleSubmit()} >{load ? <Loader /> : <b>Connexion</b> } </div>
                 </form>

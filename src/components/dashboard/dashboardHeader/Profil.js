@@ -12,7 +12,7 @@ function Profil(){
                 <div className = 'display-pp'><br />W</div>
                 <br />
                 <div className = 'display-name'>Wilfried NGOUNE</div>
-                <div className = 'display-email'>wilfriedngoune@gmail.com</div>
+                <div className = 'display-email'>{localStorage.getItem('email')}</div>
             </section>
             <hr />
 
