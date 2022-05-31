@@ -64,7 +64,14 @@ function Signin({setActivateSignin}){
 
         ).then((res) => {
             if(res.status === 201){
-                localStorage.setItem("email", res.data.email)
+                console.log(res.data)
+                
+                //Enregistrement de donnee dans le navigateur..
+                localStorage.setItem("id", res.data[0].id)
+                localStorage.setItem("role", userCat)
+                console.log(res.data[0].id)
+
+
                 setLoad(true)
                 const redirect = setTimeout(() => {
                     window.location.href = "/dashboard"

@@ -34,7 +34,16 @@ function Login({setActivateLogin}){
 
         ).then((res) => {
             console.log(res.data)
-            localStorage.setItem("email", res.data.email)
+
+            //Enregidtrement des info dans le navigateur...
+            console.log(res.data[0].id)
+            localStorage.setItem("id", res.data[0].id)
+            res.data[0].role ? localStorage.setItem("role", "enseignant/") : localStorage.setItem("role", "etudiant/")
+
+            console.log('les infos du navigateur')
+            console.log(localStorage.getItem("role"))
+            console.log(localStorage.getItem("id"))
+            
             setLoad(true)
             const redirect = setTimeout(() => {
                 window.location.href = "/dashboard"

@@ -1,18 +1,30 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 
 //css
 import '../../../styles/dashboard/profil.css' 
 
+//Image
+import adminImage from '../../../images/admin.png'
 
-function Profil(){
+
+//Les urls
+const Url = require('../../../url')
+
+
+
+function Profil({email, noms, pp, role}){
+
+
+    
+
     return(
         <section className = 'profil-container'>
             <section className = 'pp-and-email-container'>
-                <div className = 'display-pp'><br />W</div>
+                <div className = 'display-pp'><br />{pp}</div>
                 <br />
-                <div className = 'display-name'>Wilfried NGOUNE</div>
-                <div className = 'display-email'>{localStorage.getItem('email')}</div>
+                <div className = 'display-name'>{noms}{role === 'admin' ? <Fragment><img src = {adminImage} className = 'admin-image' alt = "Image du signe de l'admin"  /></Fragment> : null}</div>
+                <div className = 'display-email'>{email}</div>
             </section>
             <hr />
 
