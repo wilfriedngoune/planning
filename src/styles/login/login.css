@@ -32,6 +32,7 @@
     border-radius: 5px;
     font-family: inherit;
     padding: 5px;
+    padding-left: 8px;
     margin-bottom: 10px;
     margin-right: 5px;
 }
@@ -88,7 +89,20 @@
     margin-left: 45%;
     margin-top: 1px;
   }
+
+
+
+  .login-header{
+      display: flex;
+      justify-content: space-between;
+  }
   
+  .close-pop:hover{
+    background-color: #17bbc13d;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
   
   /* Safari */
   @-webkit-keyframes spin {

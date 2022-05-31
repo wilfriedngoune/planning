@@ -16,7 +16,7 @@ const Url = require('../../url');
 
 
 
-function Signin(){
+function Signin({setActivateSignin}){
 
     //Etat de la variable qui change la categorie du nouveau user qui sinscrit
     const [userCat, setUserCat] = useState('etudiant/');
@@ -103,7 +103,13 @@ function Signin(){
         <section className = 'login-container'>
             <br /><br /><br /><br /><br />
             <section className = 'login-popup'>
-                <span className = 'popup-title'>Inscription</span>
+                <section className = 'login-header'>
+                    <span className = 'popup-title'>Inscription</span>
+                    
+                    <span class="material-symbols-outlined close-pop" onClick = {() => setActivateSignin(false)}>
+                    close
+                    </span>
+                </section>
                 <br /><br />
                 <form>
                     <input type = 'text' id = 'noms' className = 'login-field' placeholder = 'Noms et Prenoms' name = 'noms' onChange = {() => setNoms(document.getElementById('noms').value)}/>

@@ -11,7 +11,7 @@ const Url = require('../../url')
 
 
 
-function Login(){
+function Login({setActivateLogin}){
 
     //etat des variables email et pass
     const [email, setEmail] = useState('')
@@ -26,7 +26,7 @@ function Login(){
 
     //Fonction qui envoit les donnee
     const handleSubmit = () => {
-        axios.post(Url.devUrl() + 'utilisateur/login',
+        axios.post(Url.devUrl() + 'utilisateur',
         {
             'email' : email,
             'password' : password
@@ -55,7 +55,13 @@ function Login(){
         <section className = 'login-container'>
             <br /><br /><br /><br /><br />
             <section className = 'login-popup'>
-                <span className = 'popup-title'>Connexion</span>
+                <section className = 'login-header'>
+                    <span className = 'popup-title'>Connexion</span>
+                    
+                    <span class="material-symbols-outlined close-pop" onClick = {() => setActivateLogin(false)}>
+                    close
+                    </span>
+                </section>
                 <br /><br />
                 <form>
                     <input type = 'email' id = 'email' className = 'login-field' placeholder = 'Email' onChange = {() => setEmail(document.getElementById('email').value)}/><span className = 'red-sign'>*</span>

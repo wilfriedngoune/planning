@@ -19,10 +19,10 @@ function Home(){
     return(
         <section>
             {/*Affichage de la Login pop up */}
-            {activateLogin ? <Login /> : null}
+            {activateLogin ? <Login setActivateLogin = {setActivateLogin}/> : null}
 
             {/*Affichage de la Sign pop up */}
-            {activateSignin ? <Signin /> : null}
+            {activateSignin ? <Signin setActivateSignin = {setActivateSignin}/> : null}
 
 
             {/*Le composant header de la page d'accueil */}
