@@ -1,5 +1,5 @@
 exports.devUrl = function(){
-    return 'http://server-planning.herokuapp.com/api/';
+    return 'https://server-planning.herokuapp.com/api/';
     
 }
 
