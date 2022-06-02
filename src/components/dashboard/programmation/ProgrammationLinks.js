@@ -26,6 +26,7 @@ function ProgrammationLinks(){
              throw err
          })
      }, [])
+     
     return(
         <section className = 'links-container'>
             <span className = 'link' onClick = {() => window.location.href = '/dashboard'}>Accueil</span>

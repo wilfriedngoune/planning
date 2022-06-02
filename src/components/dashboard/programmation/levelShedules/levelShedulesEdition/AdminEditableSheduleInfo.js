@@ -6,7 +6,7 @@ import '../../../../../styles/dashboard/programmation/levelShedules/level-shedul
 import AdminEditableSheduleInfoPopup from "./AdminEditableSheduleInfoPopup";
 
 
-function AdminEditableSheduleInfo({id, caseValue, setTmpCaseValue}){
+function AdminEditableSheduleInfo({id, caseValue, setTmpCaseValue, idNiveau}){
     //etat de la variable qui controle le popup d'edition d'une case de l''emplois de temps
     const [displayAdminEdit, setDisplayAdminEdit] = useState (false)
     //Methode qui change l'etat
@@ -36,7 +36,7 @@ function AdminEditableSheduleInfo({id, caseValue, setTmpCaseValue}){
             </Fragment>}
             </section>
             {/* Affiche de la popup de modification d'une case */}
-            { displayAdminEdit ? <AdminEditableSheduleInfoPopup setDisplayAdminEdit = {setDisplayAdminEdit} id = {id} setTmpCaseValue = {setTmpCaseValue} caseValue = {caseValue}/> : null}
+            { displayAdminEdit ? <AdminEditableSheduleInfoPopup setDisplayAdminEdit = {setDisplayAdminEdit} id = {id} setTmpCaseValue = {setTmpCaseValue} caseValue = {caseValue} idNiveau = {idNiveau}/> : null}
         </Fragment>
     )
 

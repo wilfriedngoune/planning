@@ -1,0 +1,25 @@
+.th-td{
+    border: none;
+    background-color: white;
+}
+
+.load-box{
+    background-color: #c4c4c4;
+    height: 25px;
+    animation: load-shedule 0.5s infinite
+}
+
+
+
+
+
+
+
+@keyframes load-shedule{
+    from {
+        opacity: 50%;
+    }
+    to{
+        opacity: 90%;
+    }
+}

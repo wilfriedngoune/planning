@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 //css
 import '../../../../../styles/dashboard/programmation/levelShedules/level-shedules-editable.css'
 
-function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDisplayAdminEdit}){
+
+//Les urls
+const Url = require('../../../../../url')
+
+function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDisplayAdminEdit, idNiveau}){
 
     //fonction qui ferme la popup d'edition en cas d'annulation
     const HandleCloseAdminEdit = () => {
         setDisplayAdminEdit(false)
     }
+
+    
 
     //Etat des variables instantanement modifie
     const [ue, setUe] = useState('')
@@ -74,6 +81,23 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
         setDisplayAdminEdit(false)
         
     }
+
+    //Liste des elements qu'on affiche dans les seleect des ue, ens et salle.
+    const[ueList, setUeList] = useState()
+    const[enseignantList, setEnseignantList] = useState()
+    const[salleList, setSalleList] = useState()
+
+
+    //Requette qui recoit tout les ue de la classe demande
+    useEffect(() => {
+        axios.get(Url.devUrl() + ''
+        ).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
+
     return(
         <section className = 'edit-popup-container'>
             <br /><br /><br /><br /><br /><br /><br />

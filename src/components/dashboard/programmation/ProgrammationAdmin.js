@@ -1,9 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
+import axios from "axios";
+
+//Componnents
 import ProgrammationHeader from "./ProgrammationHeader";
-import '../../../styles/dashboard/programmation/programmation.css'
 import AdminEditableShedule from "./levelShedules/levelShedulesEdition/AdminEditableShedule";
 import SaveAdminModification from "./levelShedules/levelShedulesEdition/SaveAdminModification";
-import axios from "axios";
+
+
+//css
+import '../../../styles/dashboard/programmation/programmation.css'
+import SalleShedulePrincipal from "./salleShedules/SalleShedulePrincipal";
+
 
 
 
@@ -28,6 +35,13 @@ function  ProgrammationAdmin() {
     }, [])
 
 
+    //Etat de la variable qui affiche l'emplois de temps par salle
+    const[displaySalle, setDisplaySalle] = useState(false)
+
+    //Fonction qui handle l'affichage de l'emplois de temps par salle
+    const handleDisplay = () =>{
+        displaySalle ? setDisplaySalle(false) : setDisplaySalle(true)
+    }
     return(
         <section>
             <section className = 'programmation-container'>
@@ -43,8 +57,19 @@ function  ProgrammationAdmin() {
                     </section>
                     <hr />
                     <br />
-                    <AdminEditableShedule />    
+                    <AdminEditableShedule idNiveau = {idNiveau}/>   
+                    <br /><br /><br />
+                    {/* L'affichage des emplois de temps par salle */}
+                    <section>
+                        <section className = 'print-big-container'>
+                            <div className = 'display-by-salle-button' onClick = {() => handleDisplay()}>Activer l'affichage par salle</div>
+                        </section>
+                        <br />
+                        {/* Affichage de l'emplois de temps par salle */}
+                        {displaySalle ? <SalleShedulePrincipal /> : null}
+                    </section> 
                 </section> : null}
+                
             </section>
         </section>
     )
