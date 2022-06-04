@@ -34,7 +34,7 @@ table{
 
 /* AdminEditableSheduleInfoPopup */
 .edit-popup-container{
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -61,6 +61,7 @@ table{
     font-size: 0.9em;
     border-radius: 2.5px;
     cursor: pointer;
+    margin-bottom: 3px;
 }
 .edit-popup-title{
     text-align: center;
@@ -86,6 +87,7 @@ table{
 .edit-popup-footer{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .red-back{
@@ -107,4 +109,15 @@ table{
 .note-message{
     color: green;
     font-weight: 600;
+}
+
+
+/* Style du composant ForgetSave */
+
+.width-auto{
+    width: auto;
+}
+
+.small-font{
+    font-size: 0.85em;
 }

@@ -8,7 +8,7 @@ import '../../../../../styles/dashboard/programmation/levelShedules/level-shedul
 //Les urls
 const Url = require('../../../../../url')
 
-function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDisplayAdminEdit, idNiveau}){
+function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayAdminEdit, idNiveau}){
 
     //fonction qui ferme la popup d'edition en cas d'annulation
     const HandleCloseAdminEdit = () => {
@@ -49,7 +49,11 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
 
 
         //on verifie que si la case est vide, on fait un ajout
-        if(indexOfElt() === -1 && (ue !== '' && enseignant !== '' &&salle !== '')){
+        if(indexOfElt() === -1 && (ue !== '' && enseignant !== '' && salle !== '')){
+            //Preciser que quelques chose a ete modifiee
+            setModifyCase(true)
+
+
             //Chargement des nouvelle valeur dans l'objet
             tmpItem.plage = id
             tmpItem.ue = ue
@@ -60,21 +64,27 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setTmpCaseValue, setDispla
             finalTable.push(tmpItem)
         }
 
-        if(indexOfElt() !== -1){
+        else if(indexOfElt() !== -1){
             //Au cas ou il modifie une valeur
             if(ue !== '' || enseignant !== '' || salle !== ''){
-                tmpItem.plage = id
+                //Preciser que quelques chose a ete modifiee
+                setModifyCase(true)
 
-                ue === '' ? tmpItem.ue = caseValue[indexOfElt()].ue : tmpItem.ue = ue
+                //Est ce que l'ue a bouge ? si  oui ...
+                if(ue !== ''){
+                   finalTable[indexOfElt()].ue = ue
+                }
 
-                enseignant === '' ? tmpItem.enseignant = caseValue[indexOfElt()].enseignant : tmpItem.enseignant = enseignant
+                //Est ce que l'enseigant a bouge, si oui ...
+                if(ue !== ''){
+                    finalTable[indexOfElt()].enseignant = enseignant
+                 }
 
+                //Est ce que la salle a bouge, si oui ...
+                if(ue !== ''){
+                finalTable[indexOfElt()].salle = salle
+                }
 
-                salle === '' ? tmpItem.salle = caseValue[indexOfElt()].salle : tmpItem.salle = salle
-
-                
-                //Ajout de l'objet dans le tableau
-                finalTable.push(tmpItem)
             }
         }
 

@@ -21,7 +21,7 @@ function  ProgrammationSimpleUser() {
 
     //Fonction qui prends tout les emplois de temps afficher par salle dans la base de donnee..
     useEffect(() => {
-        axios.get(Url.devUrl() + 'cours-programme',
+        axios.get(Url.devUrl() + 'classe-cours',
         ).then((res) => {
             setLoad(false)
             console.log(res.data)
@@ -31,114 +31,6 @@ function  ProgrammationSimpleUser() {
         })
     }, [])
 
-
-
-    // //Liste de tous les emplois de tenps de la faculte des sciences
-    // let timeTable = [
-    //     {
-    //         'codeClasse' : 'INFOL3-SIGL',
-    //         'cours' : [
-    //             {
-    //                 'plage' : 2,
-    //                 'ue' : "INF3015",
-    //                 'enseignant' : 'Tsopze Norbert',
-    //                 'salle' : 'A3'
-    //             },
-        
-    //             {
-    //                 'plage' : 4,
-    //                 'ue' : "INF3055",
-    //                 'enseignant' : 'Valery Monthe',
-    //                 'salle' : 'SOO6'
-    //             },
-        
-    //             {
-    //                 'plage' : 5,
-    //                 'ue' : "INF3196",
-    //                 'enseignant' : 'Jiomekong Fidele',
-    //                 'salle' : 'S008'
-    //             },
-        
-    //             {
-    //                 'plage' : 21,
-    //                 'ue' : "INF3025",
-    //                 'enseignant' : 'Thomas Messi',
-    //                 'salle' : 'A250'
-    //             },
-        
-    //         ]
-    //     },
-
-    //     {
-    //         'codeClasse' : 'INFOL2',
-    //         'cours' : [
-    //             {
-    //                 'plage' : 17,
-    //                 'ue' : "INF2033",
-    //                 'enseignant' : 'Tsopze Norbert',
-    //                 'salle' : 'A3'
-    //             },
-        
-    //             {
-    //                 'plage' : 4,
-    //                 'ue' : "INF3055",
-    //                 'enseignant' : 'Valery Monthe',
-    //                 'salle' : 'SOO6'
-    //             },
-        
-    //             {
-    //                 'plage' : 5,
-    //                 'ue' : "INF3196",
-    //                 'enseignant' : 'Jiomekong Fidele',
-    //                 'salle' : 'S008'
-    //             },
-        
-    //             {
-    //                 'plage' : 21,
-    //                 'ue' : "INF3025",
-    //                 'enseignant' : 'Thomas Messi',
-    //                 'salle' : 'A250'
-    //             },
-        
-    //         ]
-    //     },
-
-    //     {
-    //         'codeClasse' : 'INFOL3-SECU',
-    //         'cours' : [
-    //             {
-    //                 'plage' : 2,
-    //                 'ue' : "INF3015",
-    //                 'enseignant' : 'Tsopze Norbert',
-    //                 'salle' : 'A3'
-    //             },
-        
-    //             {
-    //                 'plage' : 4,
-    //                 'ue' : "INF3055",
-    //                 'enseignant' : 'Valery Monthe',
-    //                 'salle' : 'SOO6'
-    //             },
-        
-    //             {
-    //                 'plage' : 5,
-    //                 'ue' : "INF3196",
-    //                 'enseignant' : 'Jiomekong Fidele',
-    //                 'salle' : 'S008'
-    //             },
-        
-    //             {
-    //                 'plage' : 21,
-    //                 'ue' : "INF3025",
-    //                 'enseignant' : 'Thomas Messi',
-    //                 'salle' : 'A250'
-    //             },
-        
-    //         ]
-    //     },
-
-    // ]
-    
 
     //Etat de la variable qui signale si on peut deja imprimer
     const[displayHeader, setDisplayHeader] = useState(false)

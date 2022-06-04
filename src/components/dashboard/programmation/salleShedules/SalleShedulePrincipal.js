@@ -1,8 +1,29 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
+
+//Les composants
 import SalleShedule from "./SalleShedule";
 
 
-function SalleShedulePrincipal(){
+//Les Urls
+const Url = require('../../../../url')
+
+function SalleShedulePrincipal({setLoaderForSalle}){
+
+    //focntion pour recuperer toutes les salle de la base de donne avec les cours qui passe.
+    const[timeTableSalle, setTimeTableSalle] = useState([])
+
+    useEffect(() => {
+        axios.get(Url.devUrl() + 'salle-cours',
+        ).then((res) => {
+            //Desactivation du loader quand la donne arrive
+            setLoaderForSalle(false)
+            console.log(res.data)
+            setTimeTableSalle(res.data)
+        }).catch((err) =>{
+            throw err
+        })
+    }, [])
 
     //Liste de tous les emplois de tenps de la faculte des sciences
     let timeTableCours = [
@@ -99,7 +120,7 @@ function SalleShedulePrincipal(){
     ]
     return(
         <section>
-            {timeTableCours.map((element) => 
+            {timeTableSalle.map((element) => 
             <Fragment>
                 <div>{element.codeSalle}</div>
                 <hr /><br />
