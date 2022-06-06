@@ -92,21 +92,45 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
         
     }
 
+    //FOnction qui supprime les informations d'une case qui est deja remplie
+    const handleCancel = () => {
+
+        //On suprime la valeur dans la instantanee en local
+        console.log(indexOfElt())
+        caseValue.splice(indexOfElt(), 1)
+
+        //On supprime la table dans la base de donnee
+        axios.delete(Url.devUrl() + '' 
+        ).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+            throw err
+        })
+
+        setDisplayAdminEdit(false)
+    }
+
+
+
+
     //Liste des elements qu'on affiche dans les seleect des ue, ens et salle.
-    const[ueList, setUeList] = useState()
+    const[ueList, setUeList] = useState([])
     const[enseignantList, setEnseignantList] = useState()
     const[salleList, setSalleList] = useState()
 
 
     //Requette qui recoit tout les ue de la classe demande
     useEffect(() => {
-        axios.get(Url.devUrl() + ''
+        axios.get(Url.devUrl() + 'classe-notcours/' + idNiveau
         ).then((res) => {
-            console.log(res)
+            console.log(res.data[0].cours)
+            setUeList(res.data[0].cours)
         }).catch((err) => {
             throw err
         })
     }, [])
+
+
 
     return(
         <section className = 'edit-popup-container'>
@@ -117,10 +141,9 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
                     {/* Pour l'ue */}
                     <select id = 'ue' className = 'edit-element-item' onChange = {() => setUe(document.getElementById('ue').value)}>
                         <option>UE...</option>
-                        <option>INF3015</option>
-                        <option>INF3025</option>
-                        <option>INF3036</option>
-                        <option>ENG3035</option>
+                        {ueList.map((element) => 
+                        <option>{element.ue}</option>
+                        )}
                     </select>
 
 
@@ -147,7 +170,9 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
                 <br /><br />
                 <section className = 'edit-popup-footer'>
                     <div className = 'edit-popup-button' onClick = {() => handleValidate()}>Valider</div>
-                    <div className = 'edit-popup-button red-back' onClick = {() => HandleCloseAdminEdit()}>Annuler</div>
+                    {indexOfElt() !== -1 ? <div className = 'edit-popup-button red-back' onClick = {() => handleCancel()}>Supprimer</div> : null}
+
+                    <div className = 'edit-popup-button gray-back' onClick = {() => HandleCloseAdminEdit()}>Annuler</div>
                 </section>
             </section>
         </section>
