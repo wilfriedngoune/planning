@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 
+//css
 import '../../../styles/dashboard/dashboardHeader.css'
 import '../../../styles/dashboard/ressource/ressource.css'
 
-
+//composants
 import Logo from "../dashboardHeader/Logo";
 import ProfilPicture from "../dashboardHeader/ProfilPicture";
 import LatBar from "./LatBar";
@@ -13,7 +15,10 @@ import NewSalle from "./NewSalle";
 import RessourceLinks from "./RessourceLinks";
 import SalleBatiment from "./SalleBatiment";
 import SalleType from "./SalleType";
+import SalleLoading from "./SalleLoading";
 
+//Les urls
+const Url = require('../../../url')
 
 function Ressource(){
 
@@ -32,6 +37,41 @@ function Ressource(){
     const [manageBtp, setManageBtp] = useState(false);
 
 
+
+    //Recuperation en base de donnee de tous les salles par batiment
+    const[salleBatiment, setSalleBatiment] = useState([])
+    useEffect(() => {
+        axios.get(Url.devUrl() + 'batiment-salle',
+
+        ).then((res) => {
+            //Desactivation du loader de l'affichage des batiment
+            setLoadForSalle(false)
+            console.log(res.data)
+            setSalleBatiment(res.data)
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
+
+
+
+     //Recuperation de la liste des salles en fonction des type 
+     const[typeSalle, setTypeSalle] = useState([])
+
+     useEffect(() => { 
+        axios.get(Url.devUrl() + 'type-salle',
+
+            ).then((res) => {
+                console.log(res.data)
+                setTypeSalle(res.data)
+            }).catch((err) => {
+                throw err
+            })
+
+    }, [])
+
+    //Variable qui gere le display des salles
+    const[loadForSalle, setLoadForSalle] = useState(true)
 
     return(
         <section>
@@ -82,7 +122,11 @@ function Ressource(){
                     {/* <SalleLoading /> */}
                     {/*Affichage des salle en fonction de la selection */}
                     <br />
-                    {displayType === "Batiment" ? <SalleBatiment /> : <SalleType />}
+                    {/* Affichage du Loader des affichages des salles*/}
+                    {loadForSalle ? <SalleLoading /> : null}
+
+
+                    {displayType === "Batiment" ? <SalleBatiment salleBatiment = {salleBatiment}/> : <SalleType typeSalle = {typeSalle}/>}
                     
 
                 </section>

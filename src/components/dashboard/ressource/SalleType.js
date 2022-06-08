@@ -11,107 +11,27 @@ import '../../../styles/dashboard/ressource/salle-batiment.css'
 //Les Urls
 const Url = require('../../../url')
 
-function SalleType(){
-
-    //Conteneur de l'ensemble qui contiendra la liste des batiments et salles.
-    //Les salles
-    let salleType = [
-        {
-            'nom' : 'Salle simple',
-            'salles' : [
-                {
-                    'nom' : 'R110',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'batiment' : 'Bloc pedagogique',
-                },
-    
-                {
-                    'nom' : 'SOO6',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'batiment' : 'Departement Informatique',
-                },
-                {
-                    'nom' : 'S008',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 100,
-                    'batiment' : 'Departement Informatique',
-                },
-            ]
-        },
-
-        {
-            'nom' : 'Amphitheatre',
-            'salles' : [
-                {
-                    'nom' : 'A350',
-                    'etat_electricite' : 'Non',
-                    'capacite_cours' : 350,
-                    'batiment' : 'Face decanat',
-                },
-    
-                {
-                    'nom' : 'A3',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 300,
-                    'batiment' : 'Face scolarite',
-                },
-                {
-                    'nom' : 'A1001',
-                    'etat_electricite' : 'Oui',
-                    'capacite_cours' : 1000,
-                    'batiment' : 'Marche 1001',
-                },
-            ]
-        }
-    ]
-    
-    
-    
-    //Etat de la variable qui contient le tableau de json a manipuler
-    const [salle, setSalle] = useState([{}])
-    const [x, setX] = useState('')
-
-    
-    
-
-     //Recuperation de la liste des salles en fonction des type 
-     useEffect(() => { 
-         //Fonction qui permet de recuperer les batiment par salle dans la base de 
-        const getBatimentSalle = () => {
-        axios.get(Url.devUrl() + 'batiment-salle/',
-
-            ).then((res) => {
-                console.log('la variable que je prends', res.data)
-                setSalle(res.data)
-                console.log('La variable a jour', salle)
-                setX('bonjour')
-                console.log(x)
-            }).catch((err) => {
-                throw err
-            })
-        }
-        getBatimentSalle()
-    }, [])
+function SalleType({typeSalle}){
 
 
 
+
+    console.log(typeSalle)
    
     return(
         <section>
             <section> 
             {
-                salleType.map
+                typeSalle.map
                 (
                         (type) => 
                     <section> 
                         <div className = 'btp-title'>{type.nom}</div>
                         <section className = 'display-salle'>
                             {
-                                type.salles.map(
+                                type.salle.map(
                                     (salle) =>
-                                    <Fragment><UnitSalle nom = {salle.nom} batiment = {salle.batiment} capCours  = {salle.capacite_cours} electricite = {salle.etat_electricite} type = {type.nom} /></Fragment>
+                                    <Fragment><UnitSalle code = {salle.code}  capCours  = {salle.capacite} electricite = {salle.etat_electricite} type = {type.nom} idSalle = {salle.id}/></Fragment>
                                 )
                             }
                         </section>

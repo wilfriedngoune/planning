@@ -39,6 +39,7 @@ function ProgrammationHeader({setDisplayShedule, setIdNiveau, setDisplayLoader, 
 
     //ETat de la variable qui contient la filiere a un instant T
     const [instantFiliere, setInstantFiliere] = useState(0)
+
    //pour le niveau ici juste de cette section
    const[idClasse, setIdClasse] = useState(0)
 
@@ -55,20 +56,30 @@ function ProgrammationHeader({setDisplayShedule, setIdNiveau, setDisplayLoader, 
         
    }
 
-    //Variable qui active le bouton selectionner..
-    const[selectionBtn, setSelectionBtn] = useState(false)
 
-    //Fonction qui prend cherche les donnees dans la base de donne et met a jours la variable 
-    
+
+
+
+    //FOntion identique a la fonction suivante mais qui se charge uniquement quand le navigateur se charge.
+    const[firstLoad, setFirstLoad] = useState(false)
     useEffect(() => {
-        axios.get(Url.devUrl() + 'classe-cours/' + idClasse
-        ).then((res) => {
-            setSelectionBtn(true)
-            console.log(res.data[0])
-            setClasseTable(res.data[0])
-        }).catch((err) => {
-            throw err
-        })
+        setFirstLoad(true)
+    }, [])
+
+
+    //Fonction qui prend cherche les donnees dans la base de donne et met a jours la variable lorque la variable idClasse est modifie  
+    useEffect(() => {
+        if(firstLoad){
+            axios.get(Url.devUrl() + 'classe-cours/' + idClasse
+            ).then((res) => {
+                setDisplayShedule(true)
+                setDisplayLoader(false)
+                console.log(res.data[0])
+                setClasseTable(res.data[0])
+            }).catch((err) => {
+                throw err
+            })
+        }
     }, [idClasse])
 
    
@@ -90,22 +101,34 @@ function ProgrammationHeader({setDisplayShedule, setIdNiveau, setDisplayLoader, 
             //desactivation de l'affichage du scheduler
             setDisplayShedule(false)
 
-            //desactivation de l'affichage du scheduler
-            setSelectionBtn(false)
 
-            // setTimeout(() => {
-            //     //Activer le bouton de selection
-            //     setSelectionBtn(true)
-            // }, 800)
         }
     }
+
+    //Handle le changement d'une filiere
+    const handleChangeFiliere = (e) => {
+        //Si des modification on ete effectuee
+        if(modifyCase){
+            setDisplayForgetPop(true)
+        }
+        
+        else{
+            //desactivation de l'affichage du scheduler
+            setDisplayShedule(false)
+
+
+            //On modifie la filiere selectionne
+            setInstantFiliere(e)
+        }
+    }
+
 
     return(
         <section className = 'program-header-container'>
             <div className = 'new-program-button' title = 'Nouvel emploi de temps'>+</div>
             <section className = 'select-program-container'>
                 <span className = 'select-program-title'>Selectionner un emploi de temps  </span>
-                <select id = 'filiere' className = 'program-header-select' onChange = {() => setInstantFiliere(document.getElementById('filiere').value)}>
+                <select id = 'filiere' className = 'program-header-select' onChange = {() => handleChangeFiliere(document.getElementById('filiere').value)}>
                     <option>Filiere</option>
                     {
                         departement.map((filiere) => 
@@ -124,8 +147,6 @@ function ProgrammationHeader({setDisplayShedule, setIdNiveau, setDisplayLoader, 
                          
                 </select>
 
-
-                {selectionBtn ? <div className = 'program-header-select-confirm' onClick = {() => handleSelectionner()}>Selectionner</div> : null}
             </section>
         </section>
     )

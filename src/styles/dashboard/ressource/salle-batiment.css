@@ -31,3 +31,19 @@
     height: 20px;
     background-color: #7e7e7e;
 }
+
+
+.load-big-container{
+    animation: load-salle 0.5s infinite
+}
+
+
+
+@keyframes load-salle{
+    from{
+        opacity: 50%;
+    }
+    to{
+        opacity: 90%;
+    }
+}

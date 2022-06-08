@@ -9,7 +9,7 @@ import '../../../styles/dashboard/ressource/info-salle.css'
 //Les Urls
 const Url = require('../../../url')
 
-function InfoSalle({id, nom, batiment, capCours, type, electricite, setSalleClick}){
+function InfoSalle({idSalle, code, batiment, capCours, type, electricite, setSalleClick}){
 
     //Fermeture de la popup
     const handleCloseInfo = () => {
@@ -30,7 +30,7 @@ function InfoSalle({id, nom, batiment, capCours, type, electricite, setSalleClic
 
 
     //Etats des variable qui seront envoye dans le formulaire
-    const [newcode, setCode] = useState(nom)
+    const [newcode, setCode] = useState(code)
     const [newcapacite, setCapacite] = useState(capCours)
     const [newelec, setElect] = useState(electricite)
     const [newbatiment, setBatiment] = useState(batiment)
@@ -96,7 +96,7 @@ function InfoSalle({id, nom, batiment, capCours, type, electricite, setSalleClic
 
     //Suppression d'une salle
     const handleDelete = () => {
-        axios.post(Url.devUrl() + '' + id,
+        axios.post(Url.devUrl() + '' + idSalle,
 
         ).then((res) => {
             console.log(res.data)
@@ -112,8 +112,8 @@ function InfoSalle({id, nom, batiment, capCours, type, electricite, setSalleClic
         <section className = 'infosalle-container'>
             <br /><br /><br />
             <section className = 'info-salle-popup'>
-                <div className = 'salle-name'>{nom} <br />
-                {updateSalle ? <input id = 'nom' type = 'text' className = 'update-field' placeholder = {nom} onChange = {() => setCode(document.getElementById('nom').value)}/> : null}
+                <div className = 'salle-name'>{code} <br />
+                {updateSalle ? <input id = 'nom' type = 'text' className = 'update-field' placeholder = {code} onChange = {() => setCode(document.getElementById('nom').value)}/> : null}
                 </div>
                 
                 <br />

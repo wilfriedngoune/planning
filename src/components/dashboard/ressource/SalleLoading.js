@@ -1,12 +1,14 @@
 import React from "react";
+
+//css
 import '../../../styles/dashboard/ressource/salle-batiment.css'
-import '../../../styles/dashboard/ressource/salle-batiment.css'
+
 
 
 function SalleLoading(){
     let salle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     return(
-        <section>
+        <section className = 'load-big-container'>
             <section> 
                 <div className = 'load-title'></div>
                 <section className = 'display-salle'>

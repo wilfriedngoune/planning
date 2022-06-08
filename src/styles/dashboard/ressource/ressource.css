@@ -146,14 +146,3 @@
 
 
 
-/*Animation de quelques section des ressources*/
-
-@keyframes change-ressource {
-     from{
-        margin-left: 10%;
-    }
-
-    to{
-        margin-left: 0%;
-    }
-}

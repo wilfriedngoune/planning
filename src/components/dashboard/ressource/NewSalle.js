@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 //css
@@ -24,21 +24,21 @@ function NewSalle({setNewSalle}){
     const [nom, setNom] = useState('')
     const [code, setCode] = useState('')
     const [capacite, setCapacite] = useState(0)
-    const [electricite, setElectricite] = useState('')
+    const [electricite, setElectricite] = useState(1)
 
 
     //Envoie des donnees dans la base de donne via l'api
 
     const handleSubmit = () => {
-        console.log(idBatiment)
-        console.log(idType)
-        console.log(nom)
-        console.log(code)
-        console.log(capacite)
-        console.log(electricite)
 
-        axios.post(Url.devUrl(),
+        axios.post(Url.devUrl() + 'salle',
         {
+            "code" : code,
+            "nom" : nom,
+            "capacite" : capacite,
+            "etat_electricite" : electricite,
+            "type_salles" : idType,
+            "batiments" : idBatiment
 
         }
 
@@ -51,39 +51,30 @@ function NewSalle({setNewSalle}){
 
 
 
+    //Tous les batiment de la base
+    const[batList, setBatList] = useState([])
+    useEffect(() => {
+        axios.get(Url.devUrl() + 'batiment',
+        ).then((res) =>{
+            setBatList(res.data)
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
 
 
-    //Valeur temporaire des batiment et salle de la base de donne
-    let batiment = [
-        {
-            'code' : "BP", 
-            'nom' : "Bloc pedagogique"
-        },
-        {
-            'code' : "D_M-I", 
-            'nom' : "Departement Math - Info"
-        },
-        {
-            'code' : "DP", 
-            'nom' : "Departement de Physique"
-        }
-    ]
+    //Tous les types de la base
+    const[typeList, setTypList] = useState([])
+    useEffect(() => {
+        axios.get(Url.devUrl() + 'typeSalle',
+        ).then((res) =>{
+            setTypList(res.data)
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
 
-    let type = [
-        {
-            'code' : "SS", 
-            'nom' : "Salle simple"
-        },
-        {
-            'code' : "A", 
-            'nom' : "Amphitheatre"
-        },
-        {
-            'code' : "ST", 
-            'nom' : "Salle de soutenance"
-        }
-    ]
-
+    
     return(
         <section className = 'infosalle-container'>
             <br /><br /><br />
@@ -94,8 +85,8 @@ function NewSalle({setNewSalle}){
                     <option>Batiment...</option>
                     {/* Lister la liste de tous les batiment de la bd */}
                     {
-                        batiment.map((batiment) => 
-                        <option id = {batiment.code} value = {batiment.code}>{batiment.nom}</option>
+                        batList.map((batiment) => 
+                        <option id = {batiment.code} value = {batiment.id}>{batiment.nom}</option>
                         )
                     }
                 </select>
@@ -104,8 +95,8 @@ function NewSalle({setNewSalle}){
                     <option>Type de la salle...</option>
                     {/* Lister la liste de tous les type de salle de la bd */}
                     {
-                        type.map((type) => 
-                        <option id = {type.code} value = {type.code}>{type.nom}</option>
+                        typeList.map((type) => 
+                        <option id = {type.code} value = {type.id}>{type.nom}</option>
                         )
                     }
                 </select>
@@ -119,9 +110,9 @@ function NewSalle({setNewSalle}){
                 
 
                <select className = 'new-ressource-select' id = 'electricite' onChange = {() => setElectricite(document.getElementById('electricite').value)}>
-                   <option value = 'Oui'>Etat de l'electricite (Oui par defaut)</option>
-                   <option>Oui</option>
-                   <option>Non</option>
+                   <option value = {1}>Etat de l'electricite (Oui par defaut)</option>
+                   <option value = {1}>Oui</option>
+                   <option value = {0}>Non</option>
                </select>
 
                 

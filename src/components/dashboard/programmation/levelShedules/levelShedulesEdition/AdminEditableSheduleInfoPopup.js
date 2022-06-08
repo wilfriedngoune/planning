@@ -94,7 +94,7 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
 
     //FOnction qui supprime les informations d'une case qui est deja remplie
     const handleCancel = () => {
-
+        
         //On suprime la valeur dans la instantanee en local
         console.log(indexOfElt())
         caseValue.splice(indexOfElt(), 1)
@@ -116,7 +116,7 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
     //Liste des elements qu'on affiche dans les seleect des ue, ens et salle.
     const[ueList, setUeList] = useState([])
     const[enseignantList, setEnseignantList] = useState()
-    const[salleList, setSalleList] = useState()
+    const[salleList, setSalleList] = useState([])
 
 
     //Requette qui recoit tout les ue de la classe demande
@@ -129,6 +129,40 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
             throw err
         })
     }, [])
+
+    //Requete qui recoit les salles libre et qui peuvent contenir les etudiants de cette classe.
+    useEffect(() => {
+        axios.post(Url.devUrl() + 'salle-libre',
+        {
+            'plage' : id,
+            "classe" : idNiveau
+        },
+
+        ).then((res) => {
+            console.log("2eme then", res.data)
+            setSalleList(res.data)
+            
+        }).catch((err) => {
+            throw err
+        })
+    }, [])
+
+
+    //FOnction qui gere la modification d'une salle
+    const handleChangeSalle = (id) => {
+        
+
+        //On transforme l'id qu'on a recuperer en code.
+        axios.get(Url.devUrl() + 'salle/' + id,
+        ).then((res) => {
+            console.log(res.data)
+            setSalle(res.data.code)
+        }).catch((err) => {
+            throw err
+        })
+        
+       
+    }
 
 
 
@@ -156,12 +190,11 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
                     </select>
 
                     {/* Pour la salle */}
-                    <select id = 'salle' className = 'edit-element-item' onChange = {() => setSalle(document.getElementById('salle').value)}>
+                    <select id = 'salle' className = 'edit-element-item' onChange = {() => handleChangeSalle(document.getElementById('salle').value)}>
                         <option>Salle...</option>
-                        <option>A250</option>
-                        <option>A3</option>
-                        <option>A350</option>
-                        <option>R108</option>
+                        {salleList.map((salle) => 
+                        <option  value = {salle.id}>{salle.code}</option>
+                        )}
                     </select>
                     
                 </section>
