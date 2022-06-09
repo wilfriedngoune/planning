@@ -4,6 +4,7 @@ import "../../styles/home/home.css"
 import { useState } from "react"
 import Login from "../login/Login"
 import Signin from "../signin/Signin"
+import ProgrammationSimpleUser from "../dashboard/programmation/ProgrammationSimpleUser"
 
 
 
@@ -13,6 +14,9 @@ function Home(){
     //Etat qui me permet de gerer l'activation et la desactivatio du login
     const [activateLogin, setActivateLogin] = useState(false)
     const [activateSignin, setActivateSignin] = useState(false)
+
+    //Etat qui affiche l'emplois de temps a l'acceuil
+    const[displayShedule, setDisplayShedule] = useState(false)
 
 
     
@@ -36,11 +40,14 @@ function Home(){
                     <input type = 'search' placeholder = 'Rechercher salle, equipement ...' className = 'banner-search-field' />
                     <br /><br /><br />
                     <section className = 'banner-foot'>
-                        <div className = 'banner-button'>Consulter le planning</div>
-                        <div className = 'banner-button'>Faire un réservation</div>
+                        <div className = 'banner-button' onClick = {() => setDisplayShedule(true)}>Consulter le planning</div>
+                        {/* <div className = 'banner-button'>Faire un réservation</div> */}
                     </section>
 
                 </section>
+                <br />
+                {/* Affichage de l'emplois de temps pour user */}
+                {displayShedule ? <ProgrammationSimpleUser /> : null}
             </section>
         </section>
     )

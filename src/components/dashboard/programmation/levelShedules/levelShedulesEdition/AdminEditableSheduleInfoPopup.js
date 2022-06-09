@@ -24,7 +24,8 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
 
     //Etat de la note, et du message de la remarque
     const [note, setNote] = useState(false)
-    const [noteMessage, setNoteMessage] = useState('Tout est ok')
+    const [valideBtn, setValideBtn] = useState(false) //affichage du bouton valide
+    const [occupiedInfo, setOccupiedInfo] = useState('')
 
     //fonction pour verifier si une case est remplie ou pas -1 si non et index si oui.
     const indexOfElt = () => {
@@ -40,72 +41,107 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
     
 
     //fonction qui valide la modification d'une case
+    //variable pour faire l'update dans la bd
+    const[idCaseForUpdateBD, setIdCaseForUpdateBD] = useState(0)
+    const[idEnseignantBD, setIdEnseignantBD] = useState(0)
+    const[idSalleBD, setIdSalleBD] = useState(0)
+    const[idUeBD, setIdUeBD] = useState(0)
+    
+
     const handleValidate = () => {
-        //Tableau finale de la fin de l'operation
-        let finalTable = caseValue
+        //Update dans la base de donnee directement
+        
+        //verifie si la case est deja remplis
+        if(indexOfElt() !== -1){
+            setIdCaseForUpdateBD(caseValue[indexOfElt()].id)
+            
+        }
+        
+        if(ue !== '' || enseignant !== '' || salle !== ''){
+            axios.put(Url.devUrl() + 'cours-programme/' + idCaseForUpdateBD,
 
-        //objet temporelle de la nouvelle case
-        let tmpItem = {}
+            {
+                "ues" : idUeBD,
+                'classes' : idNiveau,
+                'enseignants' : idEnseignantBD,
+                'salles' : idSalleBD,
+                'plages' : id
+            }
 
-
-        //on verifie que si la case est vide, on fait un ajout
-        if(indexOfElt() === -1 && (ue !== '' && enseignant !== '' && salle !== '')){
-            //Preciser que quelques chose a ete modifiee
-            setModifyCase(true)
-
-
-            //Chargement des nouvelle valeur dans l'objet
-            tmpItem.plage = id
-            tmpItem.ue = ue
-            tmpItem.enseignant = enseignant
-            tmpItem.salle = salle
-
-            //Ajout de l'objet dans le tableau
-            finalTable.push(tmpItem)
+            ).then((res) => {
+                console.log(res.data)
+            }).catch((err) => {
+                throw err
+            })
         }
 
-        else if(indexOfElt() !== -1){
+        //Update instantannee..
+        let tmpItem = {}
+
+        //On verifie si la case est vide
+        if(indexOfElt() === -1){
+            if(ue !== '' && enseignant !== '' && salle !== ''){
+                //Chargement des nouvelle valeur dans l'objet
+                tmpItem.plage = id
+                tmpItem.ue = ue
+                tmpItem.enseignant = enseignant
+                tmpItem.salle = salle
+
+                //Ajout de l'objet dans le tableau
+                caseValue.push(tmpItem)
+            }
+        }
+        else{
             //Au cas ou il modifie une valeur
             if(ue !== '' || enseignant !== '' || salle !== ''){
-                //Preciser que quelques chose a ete modifiee
-                setModifyCase(true)
-
                 //Est ce que l'ue a bouge ? si  oui ...
                 if(ue !== ''){
-                   finalTable[indexOfElt()].ue = ue
+                caseValue[indexOfElt()].ue = ue
                 }
 
                 //Est ce que l'enseigant a bouge, si oui ...
-                if(ue !== ''){
-                    finalTable[indexOfElt()].enseignant = enseignant
-                 }
-
-                //Est ce que la salle a bouge, si oui ...
-                if(ue !== ''){
-                finalTable[indexOfElt()].salle = salle
+                if(enseignant !== ''){
+                    caseValue[indexOfElt()].enseignant = enseignant
                 }
 
+                //Est ce que la salle a bouge, si oui ...
+                if(salle !== ''){
+                caseValue[indexOfElt()].salle = salle
+                }
             }
+
         }
+
+
+
 
         setDisplayAdminEdit(false)
         
     }
 
+
     //FOnction qui supprime les informations d'une case qui est deja remplie
     const handleCancel = () => {
         
-        //On suprime la valeur dans la instantanee en local
-        console.log(indexOfElt())
-        caseValue.splice(indexOfElt(), 1)
 
         //On supprime la table dans la base de donnee
-        axios.delete(Url.devUrl() + '' 
+        axios.put(Url.devUrl() + 'cours-programme/' + caseValue[indexOfElt()].id,
+        {
+            'enseignants' : caseValue[indexOfElt()].idEnseignant,
+            'salles' : null,
+            'plages' : null,
+            'ues' : caseValue[indexOfElt()].idUe,
+            'classes' : idNiveau,
+        }
+
         ).then((res) => {
             console.log(res.data)
         }).catch((err) => {
             throw err
         })
+
+        //On suprime la valeur dans la instantanee en local
+        caseValue.splice(indexOfElt(), 1)
 
         setDisplayAdminEdit(false)
     }
@@ -115,7 +151,7 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
 
     //Liste des elements qu'on affiche dans les seleect des ue, ens et salle.
     const[ueList, setUeList] = useState([])
-    const[enseignantList, setEnseignantList] = useState()
+    const[enseignantList, setEnseignantList] = useState([])
     const[salleList, setSalleList] = useState([])
 
 
@@ -148,9 +184,23 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
     }, [])
 
 
+    //Requete qui envoie les enseignant d'une UE
+    useEffect(() => {
+        axios.get(Url.devUrl() + 'ue-depart-enseignant/' + idUeBD,
+
+        ).then((res) => {
+            console.log(res.data)
+            setEnseignantList(res.data)
+        }).catch((err) => {
+            throw err
+        })
+    }, [idUeBD])
+
+
     //FOnction qui gere la modification d'une salle
     const handleChangeSalle = (id) => {
-        
+        //Mise a jour de la variable pour la salle
+        setIdSalleBD(id)
 
         //On transforme l'id qu'on a recuperer en code.
         axios.get(Url.devUrl() + 'salle/' + id,
@@ -164,6 +214,65 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
        
     }
 
+    //FOnction qui gere le onchange d'une UE
+    const handleChangeUe = (id) => {
+        //On met deja a jour l'id de la base de donnee
+        setIdCaseForUpdateBD(id)
+        
+        
+
+        //On transforme l'id qu'on a recuperer en code.
+        axios.get(Url.devUrl() + 'cours-programme/' + id,
+        ).then((res) => {
+            setUe(res.data.ues.code)
+            //MIse a joue de la variable qui constient l'id de l'ue
+            setIdUeBD(res.data.ues.id)
+        }).catch((err) => {
+            throw err
+        })
+        
+       
+    }
+
+
+    //Fonction qui change l'enseignant
+    const handleChangeEnseignant = (idEns) => {
+        //Mise a jour de la variable pour les enseignant
+        setIdEnseignantBD(idEns)
+
+        //Recherche du nom de cet enseignant dans la base de donne
+        axios.get(Url.devUrl() + 'enseignant/' + idEns,
+        ).then((res) => {
+            console.log(res.data)
+            setEnseignant(res.data.noms)
+        }).catch((err) => {
+            throw err
+        })
+
+
+        //verification si l'enseignant est disponible avant a cette heure
+        axios.post(Url.devUrl() + 'enseignant-libre',
+        {
+            'plages' : id,
+            'enseignants': idEns, 
+        } 
+        ).then((res) => {
+            console.log(id)
+            console.log(idEns)
+            console.log(res.data)
+            if(res.data[0].result){
+                setValideBtn(false)
+                setNote(true)
+                setOccupiedInfo(res.data[0].message)
+            }
+            else{
+                setNote(false)
+                setValideBtn(true)
+            }
+        }).catch((err) => {
+            throw err
+        })
+    }
 
 
     return(
@@ -173,20 +282,20 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
                 <div className = 'edit-popup-title'>Editer la case</div>
                 <section className = 'edit-element-container'>
                     {/* Pour l'ue */}
-                    <select id = 'ue' className = 'edit-element-item' onChange = {() => setUe(document.getElementById('ue').value)}>
+                    <select id = 'ue' className = 'edit-element-item' onChange = {() => handleChangeUe(document.getElementById('ue').value)}>
                         <option>UE...</option>
                         {ueList.map((element) => 
-                        <option>{element.ue}</option>
+                        <option value = {element.id}>{element.ue}</option>
                         )}
                     </select>
 
 
                     {/* Pour l'enseignant */}
-                    <select id = 'enseignant' className = 'edit-element-item' onChange = {() => setEnseignant(document.getElementById('enseignant').value)}>
+                    <select id = 'enseignant' className = 'edit-element-item' onChange = {() => handleChangeEnseignant(document.getElementById('enseignant').value)}>
                         <option>Enseignant...</option>
-                        <option>Valery Monthe</option>
-                        <option>Armel Nzekong</option>
-                        <option>Sakwe Albert</option>
+                        {enseignantList.map((element) => 
+                        <option value = {element.idEnseignant}>{element.enseignant}</option>
+                        )}
                     </select>
 
                     {/* Pour la salle */}
@@ -199,10 +308,10 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
                     
                 </section>
                 <br />
-                {note ? <span className = 'note-message'>{noteMessage}</span> : null}
+                {note ? <span className = 'note-message'>Enseignant deja occupé {occupiedInfo}</span> : null}
                 <br /><br />
                 <section className = 'edit-popup-footer'>
-                    <div className = 'edit-popup-button' onClick = {() => handleValidate()}>Valider</div>
+                    {valideBtn ? <div className = 'edit-popup-button' onClick = {() => handleValidate()}>Valider</div> : null}
                     {indexOfElt() !== -1 ? <div className = 'edit-popup-button red-back' onClick = {() => handleCancel()}>Supprimer</div> : null}
 
                     <div className = 'edit-popup-button gray-back' onClick = {() => HandleCloseAdminEdit()}>Annuler</div>

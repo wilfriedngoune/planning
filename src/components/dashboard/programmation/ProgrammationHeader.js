@@ -141,7 +141,7 @@ function ProgrammationHeader({setDisplayShedule, setIdNiveau, setDisplayLoader, 
                     <option>Classe</option>
                     {
                         niveau.map((niveau) => 
-                        niveau.departements == instantFiliere ? <option id = {niveau.id} value = {niveau.id}>{niveau.code}</option> : null
+                        niveau.departements.id == instantFiliere ? <option id = {niveau.id} value = {niveau.id}>{niveau.code}</option> : null
                         )
                     }
                          

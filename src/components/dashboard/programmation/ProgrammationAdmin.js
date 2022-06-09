@@ -78,7 +78,7 @@ function  ProgrammationAdmin() {
                     {/* Affichage de l'emplois de temps en fonction des conditions. */}
                     <section className = 'level-and-confirm'>
                         <h4>{classeTable.codeClasse}</h4>
-                        <SaveAdminModification displayForgetPop = {displayForgetPop} finalCaseValue = {finalCaseValue} modifyCase = {modifyCase} idNiveau = {idNiveau}/>
+                        {/* <SaveAdminModification displayForgetPop = {displayForgetPop} finalCaseValue = {finalCaseValue} modifyCase = {modifyCase} idNiveau = {idNiveau}/> */}
                     </section>
                     <hr />
                     <br />

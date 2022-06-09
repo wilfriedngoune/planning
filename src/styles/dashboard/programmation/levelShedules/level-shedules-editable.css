@@ -111,10 +111,10 @@ table{
 }
 
 .note-message{
-    color: green;
+    color: red;
     font-weight: 600;
     font-size: 0.9em;
-    padding-left: 45%;
+    
 }
 
 
