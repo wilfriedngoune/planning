@@ -108,6 +108,23 @@ function AdminEditableSheduleInfoPopup({id, caseValue,setModifyCase, setDisplayA
                 if(salle !== ''){
                 caseValue[indexOfElt()].salle = salle
                 }
+
+                //On supprime la table dans la base de donnee
+                //On supprime la table dans la base de donnee
+                axios.put(Url.devUrl() + 'cours-programme/' + caseValue[indexOfElt()].id,
+                {
+                    'enseignants' : caseValue[indexOfElt()].idEnseignant,
+                    'salles' : null,
+                    'plages' : null,
+                    'ues' : caseValue[indexOfElt()].idUe,
+                    'classes' : idNiveau,
+                }
+
+                ).then((res) => {
+                    console.log(res.data)
+                }).catch((err) => {
+                    throw err
+                })
             }
 
         }

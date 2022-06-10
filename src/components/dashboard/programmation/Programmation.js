@@ -45,8 +45,8 @@ function  Programmation() {
                 </section>
             </section>
             <br /><br /><br />
-            {/* {userInfo.role === 'admin' ? <ProgrammationAdmin /> : <ProgrammationSimpleUser />} */}
-            <ProgrammationAdmin />
+            {userInfo.role === 'admin' ? <ProgrammationAdmin /> : <ProgrammationSimpleUser />}
+            
         </section>
     )
     

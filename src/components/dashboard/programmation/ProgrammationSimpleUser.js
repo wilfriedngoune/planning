@@ -135,26 +135,27 @@ function  ProgrammationSimpleUser() {
     return(
         <section>
             <section className = 'programmation-container'>
-                <section className = 'select-program-container'>
-                    <span className = 'select-program-title'>Selectionner un emploi de temps  </span>
-                    <select id = 'filiere' className = 'program-header-select' onChange = {() => handleChangeFiliere(document.getElementById('filiere').value)}>
-                        <option>Filiere</option>
-                        {
-                            departement.map((filiere) => 
-                            <option id = {filiere.id} value = {filiere.id}>{filiere.nom}</option>
-                            )
-                        }       
-                    </select>
-
-                    <select id = 'niveau' className = 'program-header-select' onChange = {() => handleChangeClasse(document.getElementById('niveau').value)} >
-                        <option>Classe</option>
-                        {
-                            niveau.map((niveau) => 
-                            niveau.departements.id == instantFiliere ? <option id = {niveau.id} value = {niveau.id}>{niveau.code}</option> : null
-                            )
-                        }
-                            
-                    </select> 
+                <section className = 'select-program-container '>
+                    <section>
+                        <span className = 'select-program-title'>Selectionner un emploi de temps  </span>
+                        <select id = 'filiere' className = 'program-header-select' onChange = {() => handleChangeFiliere(document.getElementById('filiere').value)}>
+                            <option>Filiere</option>
+                            {
+                                departement.map((filiere) => 
+                                <option id = {filiere.id} value = {filiere.id}>{filiere.nom}</option>
+                                )
+                            }       
+                        </select>
+                        <select id = 'niveau' className = 'program-header-select' onChange = {() => handleChangeClasse(document.getElementById('niveau').value)} >
+                            <option>Classe</option>
+                            {
+                                niveau.map((niveau) => 
+                                niveau.departements.id == instantFiliere ? <option id = {niveau.id} value = {niveau.id}>{niveau.code}</option> : null
+                                )
+                            }
+                                
+                        </select>
+                    </section>
                 </section>
                 <hr />
 
